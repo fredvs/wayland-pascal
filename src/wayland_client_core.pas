@@ -176,14 +176,12 @@ function  wl_display_prepare_read_queue(display :Pwl_display; queue: Pwl_event_q
 function  wl_display_prepare_read(display :Pwl_display): cint; cdecl; external;
 procedure wl_display_cancel_read(display :Pwl_display); cdecl; external;
 function  wl_display_read_events(display :Pwl_display): cint; cdecl; external;
+procedure wl_log_set_handler_client(handler: wl_log_func_t); cdecl; external;
 
-function  my_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
-
-
-function  my_wl_registry_add_listener(wl_registry: pwl_registry;
+function  wrap_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
+function  wrap_wl_registry_add_listener(wl_registry: pwl_registry;
 const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
 
-procedure wl_log_set_handler_client(handler: wl_log_func_t); cdecl; external;
 
 implementation
 uses

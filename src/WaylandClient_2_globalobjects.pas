@@ -45,12 +45,12 @@ begin
   display := wl_display_connect(nil);
   if display <> nil then
   begin
-    registry := my_wl_display_get_registry(display);
+    registry := wrap_wl_display_get_registry(display);
 
     registry_listener.global := @registry_global_handler;
     registry_listener.global_remove := @registry_global_remove_handler;
 
-    my_wl_registry_add_listener(registry, @registry_listener, nil);
+    wrap_wl_registry_add_listener(registry, @registry_listener, nil);
 
     while True do
     begin
