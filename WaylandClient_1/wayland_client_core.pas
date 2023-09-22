@@ -23,8 +23,9 @@
  * SOFTWARE.
  *}
 
-
 // Pascal translation by Andrews Haines.
+// This unit is part of fpc-wayland project
+// From https://github.com/andrewd207/fpc-wayland
 
 unit wayland_client_core;
 

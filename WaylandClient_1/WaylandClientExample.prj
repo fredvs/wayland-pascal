@@ -743,16 +743,16 @@ finddtext=
 findhistory=0
 findoptions=1
 editpos=2
- 0,3
- 0,-1073741823
+ 0,177
+ 0,0
 bookmarks0=0
 bookmarks1=0
 sourcefiles=2
- ${PROJECTDIR}/WaylandClientExample.pas
+ ${PROJECTDIR}/wayland_client_core.pas
  /home/fred/Downloads/fpc-wayland-master/waylandpkg/wayland_client.pas
 relpaths=2
- WaylandClientExample.pas
- Downloads/fpc-wayland-master/waylandpkg/wayland_client.pas
+ wayland_client_core.pas
+ ../Downloads/fpc-wayland-master/waylandpkg/wayland_client.pas
 ismoduletexts=2
  0
  0
@@ -761,10 +761,13 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
+order=2
+ 1
+ 0
 firsttab=0
-index=0
+index=1
 [layout]
-windowlayout=508
+windowlayout=511
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -778,8 +781,8 @@ windowlayout=508
  ny=0
  ncx=0
  ncy=0
- x=120
- y=49
+ x=34
+ y=45
  cx=1436
  cy=724
  rcx=0
@@ -1207,7 +1210,7 @@ windowlayout=508
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/WaylandClient_1/WaylandClientExample.pas
+ value=/home/fred/wayland-pascal/WaylandClient_1/wayland_client_core.pas
  history=3
   /home/fred/wayland-pascal/WaylandClient_1/WaylandClientExample.pas
   /home/fred/ideU/src/main.pas
@@ -1233,8 +1236,11 @@ windowlayout=508
  rcx=0
  rcy=0
  [sourcefo.files_tab]
+ order=2
+  1
+  0
  firsttab=0
- index=0
+ index=1
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]
