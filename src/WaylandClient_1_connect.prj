@@ -1526,7 +1526,7 @@ findhistory=20
  defineproperties
 findoptions=1
 editpos=1
- 0,5
+ 0,29
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_1_connect.pas
