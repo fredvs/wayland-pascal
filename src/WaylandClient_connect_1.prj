@@ -19,53 +19,8 @@ order16=0
 order17=0
 order18=0
 [projectoptions]
-projectdir=/home/fred/wayland-pascal/WaylandClient_1
-projectfilename=/home/fred/wayland-pascal/WaylandClient_1/WaylandClientExample.prj
-findinfiledialog=44
- [findinfileadialogfo.subdirs]
- value=1
- [findinfileadialogfo.incurrentfile]
- value=0
- [findinfileadialogfo.inopenfiles]
- value=0
- [findinfileadialogfo.wholeword]
- value=0
- [findinfileadialogfo.indirectories]
- value=1
- [findinfileadialogfo.inprojectdir]
- value=0
- [findinfileadialogfo.casesensitive]
- value=0
- [findinfileadialogfo.mask]
- value="*.pas" "*.pp" "*.inc"
- history=1
-  "*.pas" "*.pp" "*.inc"
- [findinfileadialogfo.dir]
- filenames=1
-  /home/fred/Downloads/fpc-wayland-master/
- filecolwidth=174
- x=0
- y=0
- cx=0
- cy=0
- filehistory=2
-  /home/fred/Downloads/fpc-wayland-master/
-  /C:/mseide-msegui 4.6.2/
- filefilterindex=0
- filefilter="*.pas" "*.pp" "*.inc"
- [findinfileadialogfo.findtext]
- value=wl_display_connect
- history=4
-  wl_display_connect
-  pwl_display
-  cols
-  
- [findinfileadialogfo]
- stackedunder=
- x=268
- y=415
- cx=339
- cy=373
+projectdir=/home/fred/wayland-pascal/src
+projectfilename=/home/fred/wayland-pascal/src/WaylandClient_connect_1.prj
 options=114
  [projectoptionsfo.toolshortcuts]
  dropdowncolwidths=3
@@ -73,33 +28,33 @@ options=114
   70
   70
  [projectoptionsfo.twidgetgrid3]
- propcolwidthref=786
+ propcolwidthref=762
  sortdescend0=0
  sortdescend1=0
  sortdescend2=0
  sortdescend3=0
- width4=106
+ width4=104
  sortdescend4=0
- width5=95
+ width5=92
  sortdescend5=0
- width6=88
+ width6=85
  sortdescend6=0
- width7=79
+ width7=77
  sortdescend7=0
- width8=41
+ width8=39
  sortdescend8=0
- width9=293
+ width9=284
  sortdescend9=0
  [projectoptionsfo.twidgetgrid4]
- propcolwidthref=594
+ propcolwidthref=570
  width0=96
  sortdescend0=0
  sortdescend1=0
  width2=100
  sortdescend2=0
- width3=286
+ width3=274
  sortdescend3=0
- width4=298
+ width4=286
  sortdescend4=0
  sorted=0
  col=-1073741823
@@ -109,10 +64,10 @@ options=114
  firsttab=0
  index=0
  [projectoptionsfo.fontaliasgrid]
- propcolwidthref=337
+ propcolwidthref=313
  width0=143
  sortdescend0=0
- width1=326
+ width1=302
  sortdescend1=0
  width2=66
  sortdescend2=0
@@ -126,11 +81,11 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=197
+ y=199
  xprop=1
- yprop=0.37243947858473
+ yprop=0.37616387337058
  [projectoptionsfo.macrogrid]
- propcolwidthref=559
+ propcolwidthref=535
  sortdescend0=0
  sortdescend1=0
  sortdescend2=0
@@ -143,7 +98,7 @@ options=114
  sortdescend9=0
  width10=146
  sortdescend10=0
- width11=543
+ width11=519
  sortdescend11=0
  [projectoptionsfo.comment_1]
  value=
@@ -155,10 +110,10 @@ options=114
  firsttab=0
  index=2
  [projectoptionsfo.exceptionsgrid]
- propcolwidthref=747
+ propcolwidthref=723
  width0=77
  sortdescend0=0
- width1=741
+ width1=717
  sortdescend1=0
  [projectoptionsfo.ttabwidget1]
  firsttab=0
@@ -174,24 +129,15 @@ options=114
  index=0
  [projectoptionsfo.setting_tab]
  firsttab=0
- index=2
+ index=0
  [projectoptionsfo]
  stackedunder=
- x=424
- y=112
- cx=837
+ x=564
+ y=78
+ cx=813
  cy=606
-settings=8
- [settings_form]
- x=572
- y=75
- cx=518
- cy=820
- wsize=0
- active=1
- visible=1
-mainfile=WaylandClientExample.pas
-targetfile=WaylandClientExample${EXEEXT}
+mainfile=WaylandClient_connect_1.pas
+targetfile=WaylandClient_connect_1${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -204,11 +150,11 @@ targpref=-o
 befcommand=0
 aftcommand=0
 makeoptions=5
- -Xg -l -Mobjfpc -Sh -Fcutf8
+ -l -Mobjfpc -Sh -Fcutf8
  -gl -O-
  -B
- -O2 -XX -Xs -CX
  -FUunits
+ -O2 -XX -CX -Xs
 makeoptpurpose=5
  
  
@@ -276,20 +222,12 @@ toolparams=0
 fontnames=0
 scriptbeforecopy=
 scriptaftercopy=
-newprojectfiles=4
- ${TEMPLATEDIR}default/project.pas
- ${TEMPLATEDIR}default/main.pas
- ${TEMPLATEDIR}default/main.mfm
- ${TEMPLATEDIR}default/main_mfm.pas
-newprojectfilesdest=4
- ${%PROJECTNAME%}.pas
- 
- 
- 
+newprojectfiles=0
+newprojectfilesdest=0
 newfinames=3
- Program
- Unit
- Textfile
+ MSE Program
+ MSE Unit
+ MSE Textfile
 newfifilters=3
  "*.pas" "*.pp"
  "*.pas" "*.pp"
@@ -299,14 +237,13 @@ newfiexts=3
  pas
  
 newfisources=3
- ${TEMPLATEDIR}default/program.pas
- ${TEMPLATEDIR}default/unit.pas
+ ${TEMPLATEDIR}/fpc_mse/default/program.pas
+ ${TEMPLATEDIR}/fpc_mse/default/unit.pas
  
-newfonames=12
+newfonames=11
  Mainform
  Simple Form
  Docking Form
- Sizing Form
  Datamodule
  Subform
  Scrollboxform
@@ -315,8 +252,7 @@ newfonames=12
  Report
  Scriptform
  Inherited Form
-newfonamebases=12
- form
+newfonamebases=11
  form
  form
  form
@@ -328,32 +264,30 @@ newfonamebases=12
  report
  script
  form
-newfosources=12
- ${TEMPLATEDIR}default/mainform.pas
- ${TEMPLATEDIR}default/simpleform.pas
- ${TEMPLATEDIR}default/dockingform.pas
- ${TEMPLATEDIR}default/sizingform.pas
- ${TEMPLATEDIR}default/datamodule.pas
- ${TEMPLATEDIR}default/subform.pas
- ${TEMPLATEDIR}default/scrollboxform.pas
- ${TEMPLATEDIR}default/tabform.pas
- ${TEMPLATEDIR}default/dockpanelform.pas
- ${TEMPLATEDIR}default/report.pas
- ${TEMPLATEDIR}default/pascform.pas
- ${TEMPLATEDIR}default/inheritedform.pas
-newfoforms=12
- ${TEMPLATEDIR}default/mainform.mfm
- ${TEMPLATEDIR}default/simpleform.mfm
- ${TEMPLATEDIR}default/dockingform.mfm
- ${TEMPLATEDIR}default/sizingform.mfm
- ${TEMPLATEDIR}default/datamodule.mfm
- ${TEMPLATEDIR}default/subform.mfm
- ${TEMPLATEDIR}default/scrollboxform.mfm
- ${TEMPLATEDIR}default/tabform.mfm
- ${TEMPLATEDIR}default/dockpanelform.mfm
- ${TEMPLATEDIR}default/report.mfm
- ${TEMPLATEDIR}default/pascform.mfm
- ${TEMPLATEDIR}default/inheritedform.mfm
+newfosources=11
+ ${TEMPLATEDIR}fpc_mse/default/mainform.pas
+ ${TEMPLATEDIR}fpc_mse/default/simpleform.pas
+ ${TEMPLATEDIR}fpc_mse/default/dockingform.pas
+ ${TEMPLATEDIR}fpc_mse/default/datamodule.pas
+ ${TEMPLATEDIR}fpc_mse/default/subform.pas
+ ${TEMPLATEDIR}fpc_mse/default/scrollboxform.pas
+ ${TEMPLATEDIR}fpc_mse/default/tabform.pas
+ ${TEMPLATEDIR}fpc_mse/default/dockpanelform.pas
+ ${TEMPLATEDIR}fpc_mse/default/report.pas
+ ${TEMPLATEDIR}fpc_mse/default/pascform.pas
+ ${TEMPLATEDIR}fpc_mse/default/inheritedform.pas
+newfoforms=11
+ ${TEMPLATEDIR}fpc_mse/default/mainform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/simpleform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/dockingform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/datamodule.mfm
+ ${TEMPLATEDIR}fpc_mse/default/subform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/scrollboxform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/tabform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/dockpanelform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/report.mfm
+ ${TEMPLATEDIR}fpc_mse/default/pascform.mfm
+ ${TEMPLATEDIR}fpc_mse/default/inheritedform.mfm
 forcezorder=0
 stripmessageesc=0
 copymessages=0
@@ -441,11 +375,11 @@ moduletypes=0
 modulefiles=0
 befcommandon=0
 makeoptionson=5
- 63
- 27
- 47
- 36
  4095
+ 4059
+ 4095
+ 4095
+ 36
 compilerusedon=29
  4095
  0
@@ -516,7 +450,7 @@ project_creator=
 project_copyright=
 project_license=
 project_time=
-project_date=19:26:03 10/09/23
+project_date=04:17:01 22/09/23
 project_comment=
 aftcommandon=0
 unitdirson=0
@@ -546,17 +480,9 @@ fontheights=0
 fontwidths=0
 fontoptions=0
 fontxscales=0
-expandprojectfilemacros=4
- 1
- 1
- 1
- 0
-loadprojectfile=4
- 1
- 1
- 1
- 0
-newinheritedforms=12
+expandprojectfilemacros=0
+loadprojectfile=0
+newinheritedforms=11
  0
  0
  0
@@ -568,15 +494,18 @@ newinheritedforms=12
  0
  0
  0
- 1
 uid=0
-sourcefilemasks=3
+sourcefilemasks=5
  "*.pas" "*.dpr" "*.lpr" "*.pp" "*.inc"
  "*.c" "*.cc" "*.h"
+ "*.java"
+ "*.pyw"
  "*.mfm"
-syntaxdeffiles=3
+syntaxdeffiles=5
  ${SYNTAXDEFDIR}pascal.sdef
  ${SYNTAXDEFDIR}cpp.sdef
+ ${SYNTAXDEFDIR}java.sdef
+ ${SYNTAXDEFDIR}python.sdef
  ${SYNTAXDEFDIR}objecttext.sdef
 filemasknames=3
  Source
@@ -697,7 +626,7 @@ sigsettings=27
  26,26,T,F
  27,27,T,F
  28,28,T,F
- 29,29,F,F
+ 29,29,T,F
  30,30,T,F
 defaultmake=1
 [breakpoints]
@@ -712,7 +641,7 @@ panels=1
  panel1
 units=
  (
- a=0,8229,6,Pascal Units
+ a=0,8228,6,Pascal Units
  )
 cmodules=
  (
@@ -720,7 +649,7 @@ cmodules=
  )
 files=
  (
- a=0,8229,6,Text Files
+ a=0,8228,6,Text Files
  )
 [componentstore]
 storedir=/home/fred/mseide-msegui/apps/ide/compstore/
@@ -742,32 +671,24 @@ hintheight=0
 finddtext=
 findhistory=0
 findoptions=1
-editpos=2
- 0,177
- 0,0
+editpos=1
+ 24,1
 bookmarks0=0
-bookmarks1=0
-sourcefiles=2
- ${PROJECTDIR}/wayland_client_core.pas
- /home/fred/Downloads/fpc-wayland-master/waylandpkg/wayland_client.pas
-relpaths=2
- wayland_client_core.pas
- ../Downloads/fpc-wayland-master/waylandpkg/wayland_client.pas
-ismoduletexts=2
- 0
+sourcefiles=1
+ ${PROJECTDIR}/WaylandClient_connect_1.pas
+relpaths=1
+ WaylandClient_connect_1.pas
+ismoduletexts=1
  0
 modules=0
 moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=2
- 1
- 0
 firsttab=0
-index=1
+index=0
 [layout]
-windowlayout=511
+windowlayout=506
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -781,8 +702,8 @@ windowlayout=511
  ny=0
  ncx=0
  ncy=0
- x=34
- y=45
+ x=79
+ y=93
  cx=1436
  cy=724
  rcx=0
@@ -964,14 +885,14 @@ windowlayout=511
  active=0
  visible=0
  [watchpointsfo.grid]
- propcolwidthref=352
+ propcolwidthref=332
  sortdescend0=0
  values1=0
  values1_ci=-1
  width1=33
  sortdescend1=0
  values2=0
- width2=158
+ width2=149
  sortdescend2=0
  width4=34
  sortdescend4=0
@@ -980,7 +901,7 @@ windowlayout=511
  width5=38
  sortdescend5=0
  values6=0
- width6=184
+ width6=172
  sortdescend6=0
  [breakpointsfo]
  splitdir=0
@@ -1116,26 +1037,24 @@ windowlayout=511
  width3=185
  sortdescend3=0
  [componentstorefo.storefiledialog]
- filenames=1
-  /home/fred/mseide-msegui/apps/ide/compstore/
+ filenames=0
  filecolwidth=0
  x=0
  y=0
  cx=0
  cy=0
- lastdir=/home/fred/mseide-msegui/apps/ide/compstore/
+ lastdir=
  filehistory=0
  filefilterindex=0
  filefilter=
  [componentstorefo.groupfiledialog]
- filenames=1
-  /home/fred/mseide-msegui/apps/ide/compstore/
+ filenames=0
  filecolwidth=0
  x=0
  y=0
  cx=0
  cy=0
- lastdir=/home/fred/mseide-msegui/apps/ide/compstore/
+ lastdir=
  filehistory=0
  filefilterindex=0
  filefilter=
@@ -1210,9 +1129,9 @@ windowlayout=511
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/WaylandClient_1/wayland_client_core.pas
+ value=/home/fred/wayland-pascal/src/WaylandClient_connect_1.pas
  history=3
-  /home/fred/wayland-pascal/WaylandClient_1/WaylandClientExample.pas
+  /home/fred/wayland-pascal/src/WaylandClient_connect_1.pas
   /home/fred/ideU/src/main.pas
   ${PROJECTDIR}/main.pas
  [debuggerfo.project_options]
@@ -1236,11 +1155,8 @@ windowlayout=511
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=2
-  1
-  0
  firsttab=0
- index=1
+ index=0
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]

@@ -1,5 +1,5 @@
 
-program WaylandClientExample;
+program WaylandClient_1_connect;
 
 {$mode objfpc}
 

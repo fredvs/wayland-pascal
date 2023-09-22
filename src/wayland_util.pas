@@ -124,7 +124,6 @@ procedure wl_array_release(&array: Pwl_array); cdecl; external;
 function  wl_array_add(&array: Pwl_array; size: csize_t): Pointer; cdecl; external;
 function  wl_array_copy(&array: Pwl_array; source: Pwl_array): Integer; cdecl; external;
 
-
 implementation
 
 { Twl_array }

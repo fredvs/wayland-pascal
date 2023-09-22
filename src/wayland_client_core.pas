@@ -44,6 +44,13 @@ type
   Pwl_event_queue = pointer ;//^Twl_event_queue;
   Pwl_proxy = pointer; //^Twl_proxy;
   Pwl_proxy_wrapper = pointer;//^Twl_proxy_wrapper;
+  pwl_registry = pointer; // Define pwl_registry as a pointer ty
+  
+  Pwl_registry_listener = ^Twl_registry_listener;
+  Twl_registry_listener = record
+    global : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord; AInterface: Pchar; AVersion: DWord); cdecl;
+    global_remove : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord); cdecl;
+  end;  
 
   { TWLProxyObject }
 
@@ -129,8 +136,6 @@ type
   { Twl_event_queue }
 
 
-
-
 procedure wl_event_queue_destroy(queue: Pwl_event_queue); cdecl; external;
 
 procedure wl_proxy_marshal(p: Pwl_proxy; opcode: cint32); cdecl; external; varargs;
@@ -171,6 +176,12 @@ function  wl_display_prepare_read_queue(display :Pwl_display; queue: Pwl_event_q
 function  wl_display_prepare_read(display :Pwl_display): cint; cdecl; external;
 procedure wl_display_cancel_read(display :Pwl_display); cdecl; external;
 function  wl_display_read_events(display :Pwl_display): cint; cdecl; external;
+
+function  my_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
+
+
+function  my_wl_registry_add_listener(wl_registry: pwl_registry;
+const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
 
 procedure wl_log_set_handler_client(handler: wl_log_func_t); cdecl; external;
 
