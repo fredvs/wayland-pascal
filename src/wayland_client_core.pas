@@ -27,12 +27,14 @@
 // This unit is part of fpc-wayland project
 // From https://github.com/andrewd207/fpc-wayland
 
+// Wrapped methods by fred vs 2023.
+
 unit wayland_client_core;
 
 {$mode objfpc}{$H+}
 {$packrecords c}
 {$linklib wayland-client}
-
+{$linklib wayland_wrapper} 
 
 interface
 
@@ -45,7 +47,14 @@ type
   Pwl_proxy = pointer; //^Twl_proxy;
   Pwl_proxy_wrapper = pointer;//^Twl_proxy_wrapper;
   pwl_registry = pointer; // Define pwl_registry as a pointer ty
-  
+  Pwl_compositor = Pointer;
+  Pwl_surface = Pointer;
+  Pwl_shell = Pointer;
+  Pwl_shell_surface = Pointer;
+  Pwl_shm  = Pointer;
+  Pwl_shm_pool  = Pointer;
+  Pwl_buffer  = Pointer;
+   
   Pwl_registry_listener = ^Twl_registry_listener;
   Twl_registry_listener = record
     global : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord; AInterface: Pchar; AVersion: DWord); cdecl;
@@ -182,7 +191,91 @@ function  wrap_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; 
 function  wrap_wl_registry_add_listener(wl_registry: pwl_registry;
 const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
 
+function wrap_wl_registry_bind(registry: Pwl_registry; name: LongWord;
+  interface_: Pwl_interface; version: LongWord): Pointer; cdecl;
+  external 'libwayland_wrapper';
+  
+function wl_proxy_marshal_flags(proxy: Pwl_proxy; opcode: DWord; interface_: Pwl_interface;
+ flags: DWord; p1, p2, p3: Pointer): Pwl_proxy; cdecl; external 'wayland-client';
+ 
+function wl_proxy_marshal_flags_get_xdg_surface(
+  proxy: Pwl_proxy;
+  opcode: longint;
+  interface_: Pwl_interface;
+  version: DWord;
+  flags: DWord;
+   param1: pointer;
+  surface: Pwl_surface
+   
+): Pwl_proxy; cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
+
+procedure wl_proxy_marshal_flags_ack_configure(
+  proxy: Pwl_proxy;
+  opcode: DWord;
+  interface_: Pwl_interface;
+  version: DWord;
+  flags: DWord;
+  serial: DWord
+); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
+
+
+type
+Pxdg_toplevel = Pointer;
+
+
+function wl_proxy_marshal_flags_get_toplevel(
+  proxy: Pwl_proxy;
+  opcode: DWord;
+  interface_: Pwl_interface;
+  version: DWord;
+  flags: DWord;
+  param: pointer
+): Pxdg_toplevel ; cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
+
+procedure wl_proxy_marshal_flags_set_title(
+  proxy: Pwl_proxy;
+  opcode: DWord;
+  interface_: Pwl_interface;
+  version: DWord;
+  flags: DWord;
+  title: PChar
+); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
+
+procedure wl_proxy_marshal_flags_ping(
+  proxy: Pwl_proxy;
+  opcode: DWord;
+  interface_: Pwl_interface;
+  version: DWord;
+  flags: DWord;
+  serial: DWord
+); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
+
+function wrap_wl_compositor_create_surface(compositor: Pwl_compositor): Pwl_surface; cdecl;
+  external 'libwayland_wrapper'; 
+  
+function wrap_wl_shell_get_shell_surface(shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface; cdecl;
+  external 'libwayland_wrapper'; 
+  
+procedure wrap_wl_shell_surface_set_toplevel(shell_surface: Pwl_shell_surface); cdecl;
+  external 'libwayland_wrapper';  
+  
+function wrap_wl_shm_create_pool(shm: Pwl_shm; fd: Integer; size: Integer): Pwl_shm_pool; cdecl;
+  external 'libwayland_wrapper'; 
+  
+function wrap_wl_shm_pool_create_buffer(pool: Pwl_shm_pool; offset, width, height, stride, format: Integer): Pwl_buffer; cdecl;
+  external 'libwayland_wrapper';
+  
+procedure wrap_wl_surface_attach(surface: Pwl_surface; buffer: Pwl_buffer; x, y: Integer); cdecl;
+  external 'libwayland_wrapper';
+  
+procedure wrap_wl_surface_commit(surface: Pwl_surface); cdecl;
+  external 'libwayland_wrapper'; // Name of your shared library
+  
+procedure wrap_wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; 
+  external 'libwayland_wrapper';
+  
+  
 implementation
 uses
   wayland_protocol, wayland_shared_buffer, BaseUnix, syscall;

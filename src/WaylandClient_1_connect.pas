@@ -5,7 +5,6 @@ program WaylandClient_1_connect;
 
 uses
   ctypes,
-  wayland_client,
   wayland_client_core,
   SysUtils;
 

@@ -70,7 +70,7 @@ order17=0
 order18=0
 [projectoptions]
 projectdir=/home/fred/wayland-pascal/src
-projectfilename=/home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.prj
+projectfilename=/home/fred/wayland-pascal/src/WaylandCient_3_xdg.prj
 findinfiledialog=95
  [findinfileadialogfo.subdirs]
  value=1
@@ -87,11 +87,11 @@ findinfiledialog=95
  [findinfileadialogfo.casesensitive]
  value=0
  [findinfileadialogfo.mask]
- value="*.pas" "*.pp" "*.inc" "*.mfm" 
+ value="*.pas" "*.pp" "*.inc" "*.*" 
  history=18
+  "*.pas" "*.pp" "*.inc" "*.*" 
   "*.pas" "*.pp" "*.inc" "*.mfm" 
   "*.pas" "*.pp" "*.inc" 
-  "*.pas" "*.pp" "*.inc" "*.*" 
   
   "*.pas" "*.pp" "*.inc"  "*.prj"
   "*.po"
@@ -109,13 +109,14 @@ findinfiledialog=95
   "*.pas" "*.pp" "*.inc" "*.prj"
  [findinfileadialogfo.dir]
  filenames=1
-  /home/fred/fpc-wayland-master/
- filecolwidth=150
+  /home/fred/wayland-c/
+ filecolwidth=285
  x=466
- y=190
+ y=264
  cx=608
  cy=346
  filehistory=20
+  /home/fred/wayland-c/
   /home/fred/fpc-wayland-master/
   /usr/share/lazarus/
   /home/fred/mseide-msegui/
@@ -135,47 +136,46 @@ findinfiledialog=95
   /home/fred/ideu_bin/
   /home/fred/fpc331trunk/
   /home/fred/strumpract/src/
-  /home/fred/ideu_github/
  filefilterindex=0
- filefilter="*.pas" "*.pp" "*.inc" "*.mfm"
+ filefilter="*.pas" "*.pp" "*.inc" "*.*"
  [findinfileadialogfo.findtext]
- value=wl_display_get_
+ value=xdg_wm_base_ping
  history=20
-  wl_display_get_
+  xdg_wm_base_ping
+  xdg_wm_base_pong
+  XDG_SURFACE_ACK_CONFIGUR
+  XDG_SURFACE_GET_TOPLEVEL
+  xdg_surface_ack_configure
+  xdg_surface_add_listener
+  wl_proxy_marshal_flags
+  created_xdg_surface
+  xdg_wm_base
+  xdg_wm_base_get
+  xdg_wm_base_get_xdg_surface
+  xdg_surface_configure
+  xdg_surface
+  wrap_wl_surface_commit
+  wl_shm_pool_destroy
+  wl_shm_pool_create_buffer
+  wl_shm_create_pool
   wl_proxy_add_listener
-  wl_surface_attach
-  wl_compositor_create_surface
-  wl_cursor_image_get_buffer
-  wl_cursor_theme_get_cursor
-  wl_cursor_theme_load
-  wl_seat_get_pointer
-  wl_display_get_registry
-  wl_display_roundtrip
-  external
-  FindPredefinedBrowser
-  FindDefaultBrowser
-  lineending
-  sc_file
-  sc_project
-  sc_is_modified_save
-  recrea
-  directorysep
-  #13
+  add_listener
+  xdg_wm_base_add_listener
  [findinfileadialogfo]
  stackedunder=
- x=210
- y=164
- cx=346
- cy=373
+ x=473
+ y=407
+ cx=660
+ cy=425
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
  [finddialogfo]
  stackedunder=
- x=1048
- y=295
+ x=1260
+ y=615
  cx=298
- cy=324
+ cy=368
 replacedialog=33
  [replacedialogfo.promptonreplace]
  value=1
@@ -248,7 +248,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=22
+ rowheight=26
  [projectoptionsfo.newfile]
  firsttab=0
  index=2
@@ -270,9 +270,9 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=215
+ y=212
  xprop=1
- yprop=0.39708561020036
+ yprop=0.39741219963031
  [projectoptionsfo.macrogrid]
  propcolwidthref=609
  sortdescend0=0
@@ -297,7 +297,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=0
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=827
  width0=47
@@ -320,9 +320,9 @@ options=114
  firsttab=0
  index=2
  [projectoptionsfo]
- stackedunder=
- x=404
- y=154
+ stackedunder=finddialogfo
+ x=420
+ y=264
  cx=887
  cy=618
 settaborder=15
@@ -652,8 +652,8 @@ codetemplateedit=38
  wsize=0
  active=1
  visible=1
-mainfile=WaylandClient_2_globalobjects.pas
-targetfile=WaylandClient_2_globalobjects${EXEEXT}
+mainfile=WaylandCient_3_xdg.pas
+targetfile=WaylandCient_3_xdg${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -665,7 +665,7 @@ objpref=-Fo
 targpref=-o
 befcommand=0
 aftcommand=0
-makeoptions=7
+makeoptions=8
  -Mobjfpc -Sh -Fcutf8
  -gl
  -B
@@ -673,7 +673,8 @@ makeoptions=7
  -O2
  -FUunits
  -vewinhq
-makeoptpurpose=7
+ -Flwayland_wrapper
+makeoptpurpose=8
  Define Object Pascal
  Debug infos
  Re-build all
@@ -681,6 +682,7 @@ makeoptpurpose=7
  Optimizations
  Output of units
  Verbosity
+ 
 compilerused=29
  ${COMPILER} (Default)
  Pascal 1
@@ -897,11 +899,12 @@ modulenames=0
 moduletypes=0
 modulefiles=0
 befcommandon=0
-makeoptionson=7
+makeoptionson=8
  4095
- 3
+ 7
  2047
  2047
+ 4095
  4095
  4095
  4095
@@ -936,8 +939,8 @@ compilerusedon=29
  0
  0
 debuggerusedon=6
- 3710
- 1
+ 3711
+ 0
  0
  0
  0
@@ -1491,7 +1494,7 @@ filename=
 [selecteditpage]
 colwidth=158
 x=331
-y=135
+y=246
 cx=704
 cy=473
 [progparams]
@@ -1501,48 +1504,37 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=wl_display_get_registry
+finddtext=wl_proxy_get_version
 findhistory=20
- Pwl_registry_listener
- external
- wl_registry_listener
- tdbnavigator = class(tcustomtoolbar,idbnaviglink)
- 
-+tdbnavigator = class(tcustomtoolbar,idbnaviglink)
- dbedit
- debedit
- DataLink
- #13
- projec
- showmessage
- showmessages
- tobjectinspectorfo.objectinspectoronchildscale
- onscroll
- init
- invalid
- sys_getcurrentthread
- tcustomapplication.run
- espeaklibdir
- tfiledialog
+ xdg_wm_base_ping
+ xdg_toplevel_set_title
+ data = OK
+ allocate_shm_file f
+ buffer xdg_surface_configure OK
+ draw_frame init
+ Pwl_proxy(xdg_surface)
+ state OK
+ data = MAP_FAILED
+ buffer xdg_surface_configure NOT OK
+ xdg_wm_base_get_xdg_surface
+ xdg_surface_ack_configure
+ wl_proxy_marshal_flags
+ not ok
+ listener
+ xdg_surface_configure
+ xdg_wm
+ interface
+ xdg_wm_base_add_listener
+ xdg_surface_get_toplevel
 findoptions=1
-editpos=3
- 0,8
- 0,0
+editpos=1
  0,0
 bookmarks0=0
-bookmarks1=0
-bookmarks2=0
-sourcefiles=3
- ${PROJECTDIR}/WaylandClient_2_globalobjects.pas
- ${PROJECTDIR}/wayland_client_core.pas
- ${PROJECTDIR}/wayland_protocol.pas
-relpaths=3
- WaylandClient_2_globalobjects.pas
- wayland_client_core.pas
- wayland_protocol.pas
-ismoduletexts=3
- 0
- 0
+sourcefiles=1
+ ${PROJECTDIR}/WaylandCient_3_xdg.pas
+relpaths=1
+ WaylandCient_3_xdg.pas
+ismoduletexts=1
  0
 modules=0
 moduleoptions=0
@@ -1552,7 +1544,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=540
+windowlayout=525
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1567,7 +1559,7 @@ windowlayout=540
  ncx=0
  ncy=0
  x=34
- y=64
+ y=45
  cx=1436
  cy=724
  rcx=0
@@ -1703,15 +1695,15 @@ windowlayout=540
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=11
+ propcolwidthref=26
  width0=141
  sortdescend0=0
- width1=9
+ width1=24
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=22
+ rowheight=19
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1749,14 +1741,14 @@ windowlayout=540
  active=0
  visible=0
  [watchpointsfo.grid]
- propcolwidthref=332
+ propcolwidthref=352
  sortdescend0=0
  values1=0
  values1_ci=-1
  width1=33
  sortdescend1=0
  values2=0
- width2=149
+ width2=158
  sortdescend2=0
  width4=34
  sortdescend4=0
@@ -1765,7 +1757,7 @@ windowlayout=540
  width5=38
  sortdescend5=0
  values6=0
- width6=172
+ width6=184
  sortdescend6=0
  [breakpointsfo]
  splitdir=0
@@ -1998,8 +1990,8 @@ windowlayout=540
  mdistate=0
  nx=0
  ny=0
- ncx=1422
- ncy=63
+ ncx=1221
+ ncy=77
  x=0
  y=0
  cx=1422
@@ -2013,25 +2005,10 @@ windowlayout=540
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
- history=17
-  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
-  /home/fred/wayland-pascal/src/WaylandClient_all.pas
-  /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
-  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
-  /home/fred/wayland-pascal/src/WaylandClient_all
-  /home/fred/wayland-pascal/src/wayland_wrapper.c
-  /home/fred/wayland-pascal/src/wayland_util.pas
-  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msecolordialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefontformatdialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefiledialog.pas
-  /home/fred/strumpract-main/src/aboutform.pas
+ value=/home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
+ history=2
+  /home/fred/ideU/src/main.pas
+  ${PROJECTDIR}/main.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]

@@ -5,9 +5,7 @@ program WaylandClient_2_globalobjects;
 
 uses
   ctypes,
-  wayland_client,
   wayland_client_core,
-  wayland_protocol,
   SysUtils;
   
 type
