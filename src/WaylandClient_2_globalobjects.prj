@@ -1526,9 +1526,9 @@ findhistory=20
  tfiledialog
 findoptions=1
 editpos=3
- 0,8
- 0,0
- 0,0
+ 0,1
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -1624,7 +1624,7 @@ windowlayout=540
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=findmessagefo
+ stackedunder=dialogfilesfo
  parent=
  mdistate=0
  nx=0

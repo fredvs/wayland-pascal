@@ -1527,14 +1527,19 @@ findhistory=20
  xdg_wm_base_add_listener
  xdg_surface_get_toplevel
 findoptions=1
-editpos=1
+editpos=2
  0,0
+ 0,-1073741823
 bookmarks0=0
-sourcefiles=1
+bookmarks1=0
+sourcefiles=2
  ${PROJECTDIR}/WaylandCient_3_xdg.pas
-relpaths=1
+ ${PROJECTDIR}/wayland_client_core.pas
+relpaths=2
  WaylandCient_3_xdg.pas
-ismoduletexts=1
+ wayland_client_core.pas
+ismoduletexts=2
+ 0
  0
 modules=0
 moduleoptions=0
@@ -1544,7 +1549,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=525
+windowlayout=527
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1594,7 +1599,7 @@ windowlayout=525
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -1616,7 +1621,7 @@ windowlayout=525
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=findmessagefo
+ stackedunder=dialogfilesfo
  parent=
  mdistate=0
  nx=0
@@ -1741,14 +1746,14 @@ windowlayout=525
  active=0
  visible=0
  [watchpointsfo.grid]
- propcolwidthref=352
+ propcolwidthref=332
  sortdescend0=0
  values1=0
  values1_ci=-1
  width1=33
  sortdescend1=0
  values2=0
- width2=158
+ width2=149
  sortdescend2=0
  width4=34
  sortdescend4=0
@@ -1757,7 +1762,7 @@ windowlayout=525
  width5=38
  sortdescend5=0
  values6=0
- width6=184
+ width6=172
  sortdescend6=0
  [breakpointsfo]
  splitdir=0
@@ -1990,8 +1995,8 @@ windowlayout=525
  mdistate=0
  nx=0
  ny=0
- ncx=1221
- ncy=77
+ ncx=1422
+ ncy=63
  x=0
  y=0
  cx=1422
@@ -2006,7 +2011,9 @@ windowlayout=525
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
- history=2
+ history=4
+  /home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
+  /home/fred/wayland-pascal/src/wayland_client_core.pas
   /home/fred/ideU/src/main.pas
   ${PROJECTDIR}/main.pas
  [debuggerfo.project_options]

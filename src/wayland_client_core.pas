@@ -278,7 +278,7 @@ procedure wrap_wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl;
   
 implementation
 uses
-  wayland_protocol, wayland_shared_buffer, BaseUnix, syscall;
+  wayland_protocol, BaseUnix, syscall;
 
 function mkstemp(filename: PChar):longint;cdecl;external 'libc' name 'mkstemp';
 function mkostemp(filename: PChar; flags: LongInt):longint;cdecl;external 'libc' name 'mkostemp';
