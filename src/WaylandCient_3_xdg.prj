@@ -166,7 +166,7 @@ findinfiledialog=95
  x=473
  y=407
  cx=660
- cy=425
+ cy=373
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
@@ -1527,18 +1527,28 @@ findhistory=20
  xdg_wm_base_add_listener
  xdg_surface_get_toplevel
 findoptions=1
-editpos=2
- 0,0
+editpos=4
+ 5,53
+ 0,-1073741823
+ 0,-1073741823
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
-sourcefiles=2
+bookmarks2=0
+bookmarks3=0
+sourcefiles=4
  ${PROJECTDIR}/WaylandCient_3_xdg.pas
  ${PROJECTDIR}/wayland_client_core.pas
-relpaths=2
+ ${PROJECTDIR}/wayland_util.pas
+ ${PROJECTDIR}/wayland_protocol.pas
+relpaths=4
  WaylandCient_3_xdg.pas
  wayland_client_core.pas
-ismoduletexts=2
+ wayland_util.pas
+ wayland_protocol.pas
+ismoduletexts=4
+ 0
+ 0
  0
  0
 modules=0
@@ -1549,7 +1559,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=527
+windowlayout=543
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1667,7 +1677,7 @@ windowlayout=527
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -2011,11 +2021,27 @@ windowlayout=527
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
- history=4
+ history=20
   /home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
-  /home/fred/wayland-pascal/src/wayland_client_core.pas
-  /home/fred/ideU/src/main.pas
-  ${PROJECTDIR}/main.pas
+  /home/fred/wayland-pascal/src/wayland_protocol.pas
+  /home/fred/wayland-pascal/src/wayland_util.pas
+  /home/fred/wayland-c/xdg-shell-client-protocol.h
+  /home/fred/wayland-pascal/src/WaylandCient_xdg.pas
+  /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
+  /home/fred/wayland-demo-c/xdg-shell.h
+  /home/fred/wayland-pascal/src/waylandbook2.pas
+  /home/fred/wayland-pascal/src/WaylandClient_all.pas
+  /home/fred/wayland-pascal/src/WaylandXDGShell.pas
+  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
+  /home/fred/wayland-pascal/src/WaylandClient_all
+  /home/fred/wayland-pascal/src/wayland_wrapper.c
+  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]

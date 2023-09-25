@@ -1,15 +1,14 @@
+// By Fred vS 2023.
+
 program WaylandClient_2_globalobjects;
 
 {$mode objfpc}
-
 
 uses
   ctypes,
   wayland_client_core,
   SysUtils;
   
-type
-  pwl_registry = pointer; // Define pwl_registry as a pointer type
   
 type
   pwl_registry_listener = ^wl_registry_listener;
@@ -18,9 +17,6 @@ type
                       interface_: PChar; version: LongWord); cdecl;
     global_remove: procedure(data: pointer; registry: pwl_registry; name: LongWord); cdecl;
   end;  
-
-
-// Define your Wayland types and bindings here
 
 procedure registry_global_handler(data: pointer; registry: pwl_registry;
   name: LongWord; interface_: PChar; version: LongWord); cdecl;

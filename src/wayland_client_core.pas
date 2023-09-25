@@ -27,7 +27,7 @@
 // This unit is part of fpc-wayland project
 // From https://github.com/andrewd207/fpc-wayland
 
-// Wrapped methods by fred vs 2023.
+// Wrapped methods by fred vS 2023.
 
 unit wayland_client_core;
 
@@ -40,6 +40,13 @@ interface
 
 uses
   Classes, SysUtils, unixtype, wayland_util, ctypes;
+
+const
+  XDG_TOPLEVEL_SET_TITLE_ = 2;
+  XDG_WM_BASE_GET_XDG_SURFACE_ = 2;
+  XDG_SURFACE_ACK_CONFIGURE_ = 4;
+  XDG_SURFACE_GET_TOPLEVEL_ = 1;
+  XDG_WM_BASE_PONG_ = 3;
 
 type
   Pwl_display = pointer; //^Twl_display;

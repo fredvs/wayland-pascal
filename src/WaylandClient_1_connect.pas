@@ -1,3 +1,4 @@
+// By Fred vS 2023.
 
 program WaylandClient_1_connect;
 

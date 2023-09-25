@@ -1,3 +1,5 @@
+// By Fred vS 2023.
+
 program WaylandClient_3_xdg;
 
 {$mode objfpc}{$H+}
@@ -10,23 +12,6 @@ uses
   xdg_shell_protocol,
   SysUtils;
 
-type
-  pwl_registry = Pointer;
-
-type
-  pwl_registry_listener = ^wl_registry_listener;
-
-  wl_registry_listener = record
-    global: procedure(Data: Pointer; registry: pwl_registry; Name: longword; interface_: PChar; version: longword); cdecl;
-    global_remove: procedure(Data: Pointer; registry: pwl_registry; Name: longword); cdecl;
-  end;
-
-const
-  XDG_TOPLEVEL_SET_TITLE_ = 2;
-  XDG_WM_BASE_GET_XDG_SURFACE_ = 2;
-  XDG_SURFACE_ACK_CONFIGURE_ = 4;
-  XDG_SURFACE_GET_TOPLEVEL_ = 1;
-  XDG_WM_BASE_PONG_ = 3;
 var
   display: Pwl_display;
   registry: Pwl_registry;

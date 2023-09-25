@@ -81,9 +81,9 @@ findinfiledialog=95
  [findinfileadialogfo.wholeword]
  value=0
  [findinfileadialogfo.indirectories]
- value=1
- [findinfileadialogfo.inprojectdir]
  value=0
+ [findinfileadialogfo.inprojectdir]
+ value=1
  [findinfileadialogfo.casesensitive]
  value=0
  [findinfileadialogfo.mask]
@@ -139,8 +139,9 @@ findinfiledialog=95
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc" "*.mfm"
  [findinfileadialogfo.findtext]
- value=wl_display_get_
+ value=pwl_registry_listener
  history=20
+  pwl_registry_listener
   wl_display_get_
   wl_proxy_add_listener
   wl_surface_attach
@@ -160,7 +161,6 @@ findinfiledialog=95
   sc_is_modified_save
   recrea
   directorysep
-  #13
  [findinfileadialogfo]
  stackedunder=
  x=210
@@ -1526,8 +1526,8 @@ findhistory=20
  tfiledialog
 findoptions=1
 editpos=3
- 0,1
- 0,-1073741823
+ 0,13
+ 0,0
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
@@ -1670,7 +1670,7 @@ windowlayout=540
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0

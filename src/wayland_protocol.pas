@@ -1,3 +1,7 @@
+// By Andrews Haines.
+// This unit is part of fpc-wayland project
+// From https://github.com/andrewd207/fpc-wayland
+
 unit wayland_protocol;
 
 {$mode objfpc} {$H+}
@@ -7,7 +11,6 @@ interface
 
 uses
   Classes, Sysutils, ctypes, wayland_util, wayland_client_core;
-
 
 type
   Pwl_display = Pointer;
