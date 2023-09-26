@@ -2,7 +2,9 @@
 
 program WaylandClient_1_connect;
 
-{$mode objfpc}
+{$mode objfpc}{$H+}
+{$packrecords c}
+{$interfaces corba}
 
 uses
   ctypes,
@@ -28,4 +30,3 @@ begin
   wl_display_disconnect(display);
   ExitCode := 0;
 end.
-

@@ -237,19 +237,12 @@ type
     function AddListener(AIntf: IXdgPopupListener): LongInt;
   end;
 
-
-
-
-
-
 var
   xdg_wm_base_interface: Twl_interface;
   xdg_positioner_interface: Twl_interface;
   xdg_surface_interface: Twl_interface;
   xdg_toplevel_interface: Twl_interface;
   xdg_popup_interface: Twl_interface;
-
-
 
 implementation
 
@@ -392,6 +385,7 @@ begin
   FUserDataRec.ListenerUserData := Pointer(AIntf);
   Result := wl_proxy_add_listener(FProxy, @vIntf_xdg_surface_Listener, @FUserDataRec);
 end;
+
 destructor TXdgToplevel.Destroy;
 begin
   wl_proxy_marshal(FProxy, _DESTROY);
@@ -468,6 +462,7 @@ begin
   FUserDataRec.ListenerUserData := Pointer(AIntf);
   Result := wl_proxy_add_listener(FProxy, @vIntf_xdg_toplevel_Listener, @FUserDataRec);
 end;
+
 destructor TXdgPopup.Destroy;
 begin
   wl_proxy_marshal(FProxy, _DESTROY);
@@ -484,9 +479,6 @@ begin
   FUserDataRec.ListenerUserData := Pointer(AIntf);
   Result := wl_proxy_add_listener(FProxy, @vIntf_xdg_popup_Listener, @FUserDataRec);
 end;
-
-
-
 
 procedure xdg_wm_base_ping_Intf(AData: PWLUserData; Axdg_wm_base: Pxdg_wm_base; ASerial: DWord); cdecl;
 var
@@ -541,8 +533,6 @@ begin
   AIntf := IXdgPopupListener(AData^.ListenerUserData);
   AIntf.xdg_popup_popup_done(TXdgPopup(AData^.PascalObject));
 end;
-
-
 
 const
   pInterfaces: array[0..27] of Pwl_interface = (

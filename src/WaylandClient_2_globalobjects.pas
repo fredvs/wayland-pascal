@@ -2,13 +2,14 @@
 
 program WaylandClient_2_globalobjects;
 
-{$mode objfpc}
+{$mode objfpc}{$H+}
+{$packrecords c}
+{$interfaces corba}
 
 uses
   ctypes,
   wayland_client_core,
   SysUtils;
-  
   
 type
   pwl_registry_listener = ^wl_registry_listener;

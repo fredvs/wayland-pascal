@@ -172,10 +172,10 @@ finddialog=8
  value=0
  [finddialogfo]
  stackedunder=
- x=1260
- y=666
+ x=984
+ y=493
  cx=298
- cy=368
+ cy=302
 replacedialog=33
  [replacedialogfo.promptonreplace]
  value=1
@@ -248,7 +248,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=26
+ rowheight=22
  [projectoptionsfo.newfile]
  firsttab=0
  index=2
@@ -270,9 +270,9 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=212
+ y=215
  xprop=1
- yprop=0.39741219963031
+ yprop=0.39708561020036
  [projectoptionsfo.macrogrid]
  propcolwidthref=609
  sortdescend0=0
@@ -320,9 +320,9 @@ options=114
  firsttab=0
  index=2
  [projectoptionsfo]
- stackedunder=finddialogfo
+ stackedunder=
  x=420
- y=264
+ y=236
  cx=887
  cy=618
 settaborder=15
@@ -1504,31 +1504,31 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=xdg_wm_base_ping
+finddtext=xdg_shell
 findhistory=20
+ xdg_shell
+ xdg_wm_base_pong
  xdg_wm_base_ping
+ xdg_wm_base_add_listener
+ wl_proxy_marshal_flags
+ ZXDG_SHELL_V6_PONG
+ xdg
+ registry_global
+ base
  global
+ XDG_TOPLEVEL_SET_TITLE
  xdg_toplevel_set_title
+ title
+ xdg_wm_base
+ add_listener
  data = OK
  allocate_shm_file f
  buffer xdg_surface_configure OK
  draw_frame init
  Pwl_proxy(xdg_surface)
- state OK
- data = MAP_FAILED
- buffer xdg_surface_configure NOT OK
- xdg_wm_base_get_xdg_surface
- xdg_surface_ack_configure
- wl_proxy_marshal_flags
- not ok
- listener
- xdg_surface_configure
- xdg_wm
- interface
- xdg_wm_base_add_listener
 findoptions=1
 editpos=1
- 0,1
+ 0,4
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
@@ -1558,10 +1558,10 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=66
- y=60
- cx=1436
- cy=724
+ x=50
+ y=64
+ cx=1334
+ cy=665
  rcx=0
  rcy=0
  wsize=0
@@ -1586,8 +1586,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=750
- y=334
+ x=713
+ y=64
  cx=497
  cy=314
  rcx=0
@@ -1604,9 +1604,9 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=362
- y=177
- cx=355
+ x=165
+ y=328
+ cx=763
  cy=107
  rcx=0
  rcy=0
@@ -1643,22 +1643,22 @@ windowlayout=543
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=stackfo
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=162
- y=502
+ x=105
+ y=64
  cx=564
  cy=210
  rcx=0
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [findinfilefo]
  splitdir=0
  useroptions=268451947
@@ -1669,9 +1669,9 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=201
- y=486
- cx=1158
+ x=239
+ y=115
+ cx=678
  cy=414
  rcx=0
  rcy=0
@@ -1713,8 +1713,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=337
- y=280
+ x=96
+ y=321
  cx=427
  cy=144
  rcx=0
@@ -1877,8 +1877,8 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=610
- cx=1422
+ y=551
+ cx=1320
  cy=88
  rcx=0
  rcy=0
@@ -1978,8 +1978,8 @@ windowlayout=543
  ncy=0
  x=0
  y=0
- cx=1422
- cy=64
+ cx=1320
+ cy=63
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1990,11 +1990,11 @@ windowlayout=543
  mdistate=0
  nx=0
  ny=0
- ncx=1419
- ncy=76
+ ncx=1320
+ ncy=67
  x=0
  y=0
- cx=1422
+ cx=1320
  cy=67
  rcx=0
  rcy=0
@@ -2005,32 +2005,32 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
+ value=/home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
  history=20
-  /home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
+  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
+  /home/fred/wayland-pascal/src/wayland_wrapper.c
+  /home/fred/wayland-c/main2.c
+  /home/fred/wayland-demo-c/main.c
+  /home/fred/wayland-demo-c/xdg-shell.h
+  /home/fred/wayland-demo-c/runme
+  /home/fred/wayland-c/main3.c
+  /home/fred/wayland-pascal/src/wayland_client_core.pas
+  /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/wayland-pascal/src/wayland_protocol.pas
   /home/fred/wayland-pascal/src/wayland_util.pas
+  /home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
   /home/fred/wayland-c/xdg-shell-client-protocol.h
   /home/fred/wayland-pascal/src/WaylandCient_xdg.pas
   /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
-  /home/fred/wayland-demo-c/xdg-shell.h
   /home/fred/wayland-pascal/src/waylandbook2.pas
   /home/fred/wayland-pascal/src/WaylandClient_all.pas
   /home/fred/wayland-pascal/src/WaylandXDGShell.pas
   /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
-  /home/fred/wayland-pascal/src/WaylandClient_all
-  /home/fred/wayland-pascal/src/wayland_wrapper.c
-  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
-  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
- value=1
+ value=0
  [sourcefo]
  splitdir=0
  useroptions=16489
@@ -2043,8 +2043,8 @@ windowlayout=543
  ncy=0
  x=0
  y=0
- cx=1422
- cy=540
+ cx=1320
+ cy=482
  rcx=0
  rcy=0
  [sourcefo.files_tab]
@@ -2083,9 +2083,9 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=67
- cx=1422
- cy=540
+ y=66
+ cx=1320
+ cy=482
  rcx=0
  rcy=0
 [targetconsole]

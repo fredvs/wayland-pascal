@@ -27,7 +27,7 @@
 // This unit is part of fpc-wayland project
 // From https://github.com/andrewd207/fpc-wayland
 
-// Wrapped methods by fred vS 2023.
+// Wrapped methods by Fred vS 2023.
 
 unit wayland_client_core;
 
@@ -202,8 +202,8 @@ function wrap_wl_registry_bind(registry: Pwl_registry; name: LongWord;
   interface_: Pwl_interface; version: LongWord): Pointer; cdecl;
   external 'libwayland_wrapper';
   
-function wl_proxy_marshal_flags(proxy: Pwl_proxy; opcode: DWord; interface_: Pwl_interface;
- flags: DWord; p1, p2, p3: Pointer): Pwl_proxy; cdecl; external 'wayland-client';
+//function wl_proxy_marshal_flags(proxy: Pwl_proxy; opcode: DWord; interface_: Pwl_interface;
+// flags: DWord; p1, p2, p3: Pointer): Pwl_proxy; cdecl; external 'wayland-client';
  
 function wl_proxy_marshal_flags_get_xdg_surface(
   proxy: Pwl_proxy;

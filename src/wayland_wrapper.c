@@ -1,10 +1,8 @@
 // wayland_wrapper.c
 // compile with: gcc -fPIC -shared -o libwayland_wrapper.so wayland_wrapper.c -lwayland-client
 
-
 #include <wayland-client.h>
 #include <stdlib.h> 
-
 
 // Wrapper for wl_display_get_registry
 struct wl_registry* wrap_wl_display_get_registry(struct wl_display* display) {
@@ -17,9 +15,6 @@ int wrap_wl_registry_add_listener(struct wl_registry* registry,
                                 void* data) {
     return wl_registry_add_listener(registry, listener, data);
 }
-
-// Wrapper for wl_registry_add_listener
-
 
 // Wrapper for wl_registry_bind
 void *wrap_wl_registry_bind(struct wl_registry *registry,
@@ -44,7 +39,6 @@ void wrap_wl_shell_surface_set_toplevel(struct wl_shell_surface *shell_surface) 
     wl_shell_surface_set_toplevel(shell_surface);
 }
 
-
 // Wrapper for wl_shm_create_pool
 struct wl_shm_pool *wrap_wl_shm_create_pool(struct wl_shm *shm, int32_t fd, int32_t size) {
     return wl_shm_create_pool(shm, fd, size);
@@ -66,7 +60,7 @@ void wrap_wl_surface_commit(struct wl_surface *surface) {
     wl_surface_commit(surface);
 }
 
-
+// Wrapper for wrap_wl_shm_pool_destroy
 void wrap_wl_shm_pool_destroy(struct wl_shm_pool* wl_shm_pool_) {
     wl_shm_pool_destroy(wl_shm_pool_);
 }
