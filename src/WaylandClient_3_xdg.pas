@@ -204,11 +204,17 @@ type
   end;
 
   procedure xdg_wm_base_add_listener(xdg_wm_base: Pxdg_wm_base; listener: TXdgWmBaseListener; Data: Pointer);
+  var
+  resu : integer;
   begin
     if @listener.ping <> nil then
-      wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), @listener.ping, Data);
+    begin
+      writeln('@listener.ping <> nil');
+      resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), pointer(listener), Data);
+      writeln('xdg_wm_base_add_listener = ' + inttostr(resu));
+    end else writeln('@listener.ping = nil');
   end;
-
+  
   function xdg_surface_add_listener(xdg_surface: Pxdg_surface; listener: Pxdg_surface_listener; Data: Pointer): longint;
   begin
     Result := wl_proxy_add_listener(Pwl_proxy(xdg_surface), Pointer(listener), Data);
@@ -231,8 +237,9 @@ type
 
       // Initialize your listener
       XdgWmBaseListener.ping := @xdg_wm_base_ping;
-
+      
       xdg_wm_base_add_listener(xdg_wm_base, XdgWmBaseListener, state);
+    
     end;
   end;
 
@@ -251,7 +258,6 @@ type
 
   procedure xdg_toplevel_set_title(xdg_toplevel: Pxdg_toplevel; title: PChar);
   begin
-
     wl_proxy_marshal_flags_set_title(
       Pwl_proxy(xdg_toplevel),
       XDG_TOPLEVEL_SET_TITLE_,
@@ -270,8 +276,7 @@ type
 var
   listener: Twl_registry_listener;
   xdg_surface_listener: Txdg_surface_listener;
-  xdg_wm_base_listener: Txdg_surface_listener;
-
+  
 begin
   { Initialize Wayland objects }
   shm         := nil;

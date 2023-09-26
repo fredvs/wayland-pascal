@@ -109,8 +109,6 @@ type
     popup_done : procedure(data: Pointer; AXdgPopup: Pxdg_popup); cdecl;
   end;
 
-
-
   TXdgWmBase = class;
   TXdgPositioner = class;
   TXdgSurface = class;
@@ -144,9 +142,6 @@ type
     procedure xdg_popup_configure(AXdgPopup: TXdgPopup; AX: LongInt; AY: LongInt; AWidth: LongInt; AHeight: LongInt);
     procedure xdg_popup_popup_done(AXdgPopup: TXdgPopup);
   end;
-
-
-
 
   TXdgWmBase = class(TWLProxyObject)
   private
