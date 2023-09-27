@@ -1526,8 +1526,8 @@ findhistory=20
  tfiledialog
 findoptions=1
 editpos=3
- 0,13
- 0,0
+ 0,64
+ 0,-1073741823
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
@@ -1566,8 +1566,8 @@ windowlayout=540
  ny=0
  ncx=0
  ncy=0
- x=34
- y=64
+ x=0
+ y=77
  cx=1436
  cy=724
  rcx=0
@@ -1602,7 +1602,7 @@ windowlayout=540
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -1651,7 +1651,7 @@ windowlayout=540
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=stackfo
  parent=
  mdistate=0
  nx=0
@@ -1670,7 +1670,7 @@ windowlayout=540
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1703,15 +1703,15 @@ windowlayout=540
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=11
+ propcolwidthref=27
  width0=141
  sortdescend0=0
- width1=9
+ width1=25
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=22
+ rowheight=17
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1789,10 +1789,10 @@ windowlayout=540
  [breakpointsfo.bkptson]
  value=1
  [objectinspectorfo.grid]
- propcolwidthref=240
+ propcolwidthref=241
  width0=57
  sortdescend0=0
- width1=177
+ width1=178
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1885,8 +1885,8 @@ windowlayout=540
  ncx=0
  ncy=0
  x=0
- y=610
- cx=1422
+ y=612
+ cx=1423
  cy=88
  rcx=0
  rcy=0
@@ -1986,8 +1986,8 @@ windowlayout=540
  ncy=0
  x=0
  y=0
- cx=1422
- cy=63
+ cx=1423
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -2002,8 +2002,8 @@ windowlayout=540
  ncy=63
  x=0
  y=0
- cx=1422
- cy=63
+ cx=1423
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2048,8 +2048,8 @@ windowlayout=540
  ncy=0
  x=0
  y=0
- cx=1422
- cy=541
+ cx=1423
+ cy=547
  rcx=0
  rcy=0
  [sourcefo.files_tab]
@@ -2088,9 +2088,9 @@ windowlayout=540
  ncx=0
  ncy=0
  x=0
- y=66
- cx=1422
- cy=541
+ y=62
+ cx=1423
+ cy=547
  rcx=0
  rcy=0
 [targetconsole]

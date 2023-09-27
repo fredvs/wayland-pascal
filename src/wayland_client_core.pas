@@ -34,7 +34,8 @@ unit wayland_client_core;
 {$mode objfpc}{$H+}
 {$packrecords c}
 {$linklib wayland-client}
-{$linklib wayland_wrapper} 
+
+// {$linklib wayland_wrapper} // uncomment if you want static loading
 
 interface
 
@@ -194,14 +195,6 @@ procedure wl_display_cancel_read(display :Pwl_display); cdecl; external;
 function  wl_display_read_events(display :Pwl_display): cint; cdecl; external;
 procedure wl_log_set_handler_client(handler: wl_log_func_t); cdecl; external;
 
-function  wrap_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
-function  wrap_wl_registry_add_listener(wl_registry: pwl_registry;
-const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
-
-function wrap_wl_registry_bind(registry: Pwl_registry; name: LongWord;
-  interface_: Pwl_interface; version: LongWord): Pointer; cdecl;
-  external 'libwayland_wrapper';
-  
 //function wl_proxy_marshal_flags(proxy: Pwl_proxy; opcode: DWord; interface_: Pwl_interface;
 // flags: DWord; p1, p2, p3: Pointer): Pwl_proxy; cdecl; external 'wayland-client';
  
@@ -258,6 +251,19 @@ procedure wl_proxy_marshal_flags_ping(
   serial: DWord
 ); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
+ // uncomment the following if you want static loading
+{
+
+function  wrap_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
+
+function  wrap_wl_registry_add_listener(wl_registry: pwl_registry;
+const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
+
+function wrap_wl_registry_bind(registry: Pwl_registry; name: LongWord;
+  interface_: Pwl_interface; version: LongWord): Pointer; cdecl;
+  external 'libwayland_wrapper';
+ 
+
 function wrap_wl_compositor_create_surface(compositor: Pwl_compositor): Pwl_surface; cdecl;
   external 'libwayland_wrapper'; 
   
@@ -277,11 +283,12 @@ procedure wrap_wl_surface_attach(surface: Pwl_surface; buffer: Pwl_buffer; x, y:
   external 'libwayland_wrapper';
   
 procedure wrap_wl_surface_commit(surface: Pwl_surface); cdecl;
-  external 'libwayland_wrapper'; // Name of your shared library
+  external 'libwayland_wrapper';
   
 procedure wrap_wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; 
   external 'libwayland_wrapper';
-  
+ 
+}  
   
 implementation
 uses

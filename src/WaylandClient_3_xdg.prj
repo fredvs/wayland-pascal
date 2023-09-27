@@ -81,16 +81,16 @@ findinfiledialog=95
  [findinfileadialogfo.wholeword]
  value=0
  [findinfileadialogfo.indirectories]
- value=1
- [findinfileadialogfo.inprojectdir]
  value=0
+ [findinfileadialogfo.inprojectdir]
+ value=1
  [findinfileadialogfo.casesensitive]
  value=0
  [findinfileadialogfo.mask]
- value="*.pas" "*.pp" "*.inc" "*.*" 
+ value="*.pas" "*.pp" "*.inc" "*.mfm" 
  history=18
-  "*.pas" "*.pp" "*.inc" "*.*" 
   "*.pas" "*.pp" "*.inc" "*.mfm" 
+  "*.pas" "*.pp" "*.inc" "*.*" 
   "*.pas" "*.pp" "*.inc" 
   
   "*.pas" "*.pp" "*.inc"  "*.prj"
@@ -109,18 +109,18 @@ findinfiledialog=95
   "*.pas" "*.pp" "*.inc" "*.prj"
  [findinfileadialogfo.dir]
  filenames=1
-  /home/fred/wayland-c/
+  /home/fred/strumpract-main/
  filecolwidth=285
  x=466
  y=264
  cx=608
  cy=346
  filehistory=20
+  /home/fred/strumpract-main/
   /home/fred/wayland-c/
   /home/fred/fpc-wayland-master/
   /usr/share/lazarus/
   /home/fred/mseide-msegui/
-  /home/fred/strumpract-main/
   /home/fred/Downloads/fpGUI-wayland/
   /home/fred/Downloads/fpGUI-wayland/src/corelib/wayland/
   /home/fred/Downloads/fpc-wayland-master/
@@ -139,8 +139,10 @@ findinfiledialog=95
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc" "*.*"
  [findinfileadialogfo.findtext]
- value=xdg_wm_base_add_listener
+ value=Pwl_interface
  history=20
+  Pwl_interface
+  paramst
   xdg_wm_base_add_listener
   _listener
   xdg_wm_base_ping
@@ -159,21 +161,19 @@ findinfiledialog=95
   wrap_wl_surface_commit
   wl_shm_pool_destroy
   wl_shm_pool_create_buffer
-  wl_shm_create_pool
-  wl_proxy_add_listener
  [findinfileadialogfo]
  stackedunder=
- x=473
- y=518
+ x=347
+ y=164
  cx=660
- cy=425
+ cy=373
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
  [finddialogfo]
  stackedunder=
  x=984
- y=493
+ y=530
  cx=298
  cy=302
 replacedialog=33
@@ -182,8 +182,9 @@ replacedialog=33
  [replacedialogfo.selectedonly]
  value=0
  [replacedialogfo.replacetext]
- value=tfontdialog
+ value=ww_Handle
  history=20
+  ww_Handle
   tfontdialog
   pacpas
   ' | '
@@ -203,7 +204,6 @@ replacedialog=33
   lang_modalresultnoshortcut[Ord(
   lang_modalresult[Ord(
   ];
-  lang_settings[Ord(
  [replacedialogfo]
  stackedunder=
  x=281
@@ -321,8 +321,8 @@ options=114
  index=2
  [projectoptionsfo]
  stackedunder=
- x=420
- y=236
+ x=568
+ y=209
  cx=887
  cy=618
 settaborder=15
@@ -665,7 +665,7 @@ objpref=-Fo
 targpref=-o
 befcommand=0
 aftcommand=0
-makeoptions=8
+makeoptions=9
  -Mobjfpc -Sh -Fcutf8
  -gl
  -B
@@ -673,8 +673,9 @@ makeoptions=8
  -O2
  -FUunits
  -vewinhq
- -Flwayland_wrapper
-makeoptpurpose=8
+ -kwayland_wrapper.a
+ -lwayland_wrapper
+makeoptpurpose=9
  Define Object Pascal
  Debug infos
  Re-build all
@@ -682,6 +683,7 @@ makeoptpurpose=8
  Optimizations
  Output of units
  Verbosity
+ 
  
 compilerused=29
  ${COMPILER} (Default)
@@ -899,7 +901,7 @@ modulenames=0
 moduletypes=0
 modulefiles=0
 befcommandon=0
-makeoptionson=8
+makeoptionson=9
  4095
  7
  2047
@@ -907,7 +909,8 @@ makeoptionson=8
  4095
  4095
  4095
- 4095
+ 4083
+ 4083
 compilerusedon=29
  4095
  0
@@ -1504,13 +1507,17 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=xdg_shell
+finddtext=wl_proxy_marshal_flags
 findhistory=20
+ wl_proxy_marshal_flags
+ wrap
+ PA_Handle
+ Pwl_registry_listener
+ pwl_registry
  xdg_shell
  xdg_wm_base_pong
  xdg_wm_base_ping
  xdg_wm_base_add_listener
- wl_proxy_marshal_flags
  ZXDG_SHELL_V6_PONG
  xdg
  registry_global
@@ -1522,29 +1529,75 @@ findhistory=20
  xdg_wm_base
  add_listener
  data = OK
- allocate_shm_file f
- buffer xdg_surface_configure OK
- draw_frame init
- Pwl_proxy(xdg_surface)
 findoptions=1
-editpos=1
- 0,4
+editpos=9
+ 0,268
+ 0,244
+ 0,53
+ 0,388
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,26
 bookmarks0=0
-sourcefiles=1
+bookmarks1=0
+bookmarks2=0
+bookmarks3=0
+bookmarks4=0
+bookmarks5=0
+bookmarks6=0
+bookmarks7=0
+bookmarks8=0
+sourcefiles=9
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
-relpaths=1
+ ${PROJECTDIR}/wayland_client_core.pas
+ ${PROJECTDIR}/wayland_client_wrapper.pas
+ /home/fred/uos/src/uos_portaudio.pas
+ /home/fred/strumpract-main/src/po2arrays.pas
+ ${PROJECTDIR}/wayland_util.pas
+ ${PROJECTDIR}/WaylandClient_2_globalobjects.pas
+ ${PROJECTDIR}/WaylandClient_1_connect.pas
+ ${PROJECTDIR}/xdg_shell_protocol.pas
+relpaths=9
  WaylandClient_3_xdg.pas
-ismoduletexts=1
+ wayland_client_core.pas
+ wayland_client_wrapper.pas
+ ../uos/src/uos_portaudio.pas
+ strumpract-main/src/po2arrays.pas
+ wayland_util.pas
+ WaylandClient_2_globalobjects.pas
+ WaylandClient_1_connect.pas
+ xdg_shell_protocol.pas
+ismoduletexts=9
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
  0
 modules=0
 moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
+order=9
+ 0
+ 8
+ 4
+ 3
+ 6
+ 1
+ 7
+ 2
+ 5
 firsttab=0
-index=0
+index=1
 [layout]
-windowlayout=543
+windowlayout=553
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1558,8 +1611,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=50
- y=64
+ x=0
+ y=92
  cx=1334
  cy=665
  rcx=0
@@ -1586,8 +1639,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=713
- y=64
+ x=639
+ y=410
  cx=497
  cy=314
  rcx=0
@@ -1606,7 +1659,7 @@ windowlayout=543
  ncy=0
  x=165
  y=328
- cx=763
+ cx=901
  cy=107
  rcx=0
  rcy=0
@@ -1643,7 +1696,7 @@ windowlayout=543
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=stackfo
+ stackedunder=threadsfo
  parent=
  mdistate=0
  nx=0
@@ -1671,7 +1724,7 @@ windowlayout=543
  ncy=0
  x=239
  y=115
- cx=678
+ cx=890
  cy=414
  rcx=0
  rcy=0
@@ -1695,15 +1748,15 @@ windowlayout=543
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=26
+ propcolwidthref=27
  width0=141
  sortdescend0=0
- width1=24
+ width1=25
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=19
+ rowheight=17
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1781,10 +1834,10 @@ windowlayout=543
  [breakpointsfo.bkptson]
  value=1
  [objectinspectorfo.grid]
- propcolwidthref=240
+ propcolwidthref=241
  width0=57
  sortdescend0=0
- width1=177
+ width1=178
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1877,9 +1930,9 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=551
- cx=1320
- cy=88
+ y=505
+ cx=1321
+ cy=136
  rcx=0
  rcy=0
  [componentstorefo]
@@ -1978,8 +2031,8 @@ windowlayout=543
  ncy=0
  x=0
  y=0
- cx=1320
- cy=63
+ cx=1321
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1994,8 +2047,8 @@ windowlayout=543
  ncy=67
  x=0
  y=0
- cx=1320
- cy=67
+ cx=1321
+ cy=63
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2005,9 +2058,11 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+ value=/home/fred/wayland-pascal/src/xdg_shell_protocol.pas
  history=20
   /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/uos/src/uos_portaudio.pas
+  /home/fred/wayland-pascal/src/wayland-client_wrapper.pas
   /home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
   /home/fred/wayland-pascal/src/wayland_wrapper.c
   /home/fred/wayland-c/main2.c
@@ -2025,8 +2080,6 @@ windowlayout=543
   /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
   /home/fred/wayland-pascal/src/waylandbook2.pas
   /home/fred/wayland-pascal/src/WaylandClient_all.pas
-  /home/fred/wayland-pascal/src/WaylandXDGShell.pas
-  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -2043,13 +2096,23 @@ windowlayout=543
  ncy=0
  x=0
  y=0
- cx=1320
- cy=482
+ cx=1321
+ cy=440
  rcx=0
  rcy=0
  [sourcefo.files_tab]
+ order=9
+  0
+  8
+  4
+  3
+  6
+  1
+  7
+  2
+  5
  firsttab=0
- index=0
+ index=1
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]
@@ -2083,9 +2146,9 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=66
- cx=1320
- cy=482
+ y=62
+ cx=1321
+ cy=440
  rcx=0
  rcy=0
 [targetconsole]

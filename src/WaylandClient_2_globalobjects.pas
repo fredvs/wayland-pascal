@@ -9,6 +9,7 @@ program WaylandClient_2_globalobjects;
 uses
   ctypes,
   wayland_client_core,
+  wayland_client_wrapper,
   SysUtils;
   
 type
@@ -37,6 +38,9 @@ var
   registry_listener: wl_registry_listener;
 
 begin
+if ww_Load(ExtractFilePath(ParamStr(0)) + '/libwayland_wrapper.so') then
+begin
+
   display := wl_display_connect(nil);
   if display <> nil then
   begin
@@ -57,4 +61,6 @@ begin
     writeln('Error connecting ;(');
     ExitCode := 1;
   end;
+  ww_Unload();
+end else writeln('libwayland_wrapper.so did not load.');   
 end.
