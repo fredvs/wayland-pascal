@@ -203,10 +203,10 @@ begin
   writeln('xdg_surface_add_listener = ' + IntToStr(Result));
 end;
 
+// xdg_wm_base
+
 procedure xdg_wm_base_ping(Data: Pointer; xdg_wm_base: Pxdg_wm_base; serial: cuint); cdecl;
 begin
-  writeln('xdg_wm_base_ping done');
-  
   wl_proxy_marshal_flags_ping(
                               Pwl_proxy(xdg_wm_base), 
   XDG_WM_BASE_PONG_, 
@@ -216,9 +216,8 @@ begin
   serial
   );
  
+  writeln('xdg_wm_base_ping done');
 end;
-
-// xdg_wm_base
 
 procedure xdg_wm_base_add_listener(xdg_wm_base: Pxdg_wm_base; listener: Pxdg_wm_base_listener; Data:
                                    Pointer); cdecl;
@@ -232,7 +231,7 @@ begin
 
   if listener^.ping <> nil then
     begin
-       resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), (listener), Data);
+       resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), pointer(listener), Data);
       writeln('xdg_wm_base_add_listener = ' + IntToStr(resu));
     end
   else
@@ -264,7 +263,7 @@ begin
             xdg_wm_base_listener.ping := @xdg_wm_base_ping;
 
            // test it.
-            xdg_wm_base_listener.ping(data, pointer(xdg_wm_base), version)  ;
+           // xdg_wm_base_listener.ping(data, pointer(xdg_wm_base), version)  ;
 
            xdg_wm_base_add_listener(xdg_wm_base, @xdg_wm_base_listener, state);
 
@@ -300,7 +299,6 @@ begin
   title
   );
 end;
-
 
 procedure registry_global_remove(Data: Pointer; wl_registry: Pwl_registry; Name: cuint); cdecl;
 begin
@@ -380,7 +378,6 @@ begin
       while (wl_display_dispatch(display) <> -1) do
         begin
         { This space deliberately left blank }
-       // wl_display_flush(display);
         end;
 
       wl_display_disconnect(display);

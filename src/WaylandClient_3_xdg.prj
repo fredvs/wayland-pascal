@@ -1531,7 +1531,7 @@ findhistory=20
  global
 findoptions=1
 editpos=1
- 58,205
+ 0,265
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
@@ -1561,8 +1561,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=91
- y=76
+ x=73
+ y=78
  cx=1334
  cy=665
  rcx=0
@@ -1646,7 +1646,7 @@ windowlayout=543
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=threadsfo
+ stackedunder=stackfo
  parent=
  mdistate=0
  nx=0
@@ -1994,7 +1994,7 @@ windowlayout=543
  nx=0
  ny=0
  ncx=1320
- ncy=60
+ ncy=61
  x=0
  y=0
  cx=1321
@@ -2008,8 +2008,9 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/xdg_shell_protocol.pas
+ value=/home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
  history=20
+  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
   /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/wayland-c/main3.c
   /home/fred/wayland-c/chatgpt_wrapper.txt
@@ -2029,7 +2030,6 @@ windowlayout=543
   /home/fred/wayland-c/xdg-shell-client-protocol.h
   /home/fred/wayland-pascal/src/WaylandCient_xdg.pas
   /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
-  /home/fred/wayland-pascal/src/waylandbook2.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
