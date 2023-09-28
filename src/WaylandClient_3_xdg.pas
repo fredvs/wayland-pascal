@@ -26,6 +26,7 @@ var
   xdg_surface: Pxdg_surface;
   xdg_toplevel: Pxdg_toplevel;
   xdg_wm_base_listener: Txdg_wm_base_listener;
+  pinginc: integer = 0;
 
 function allocate_shm_file(size: csize_t): cint; cdecl;
 var 
@@ -215,8 +216,10 @@ begin
   0, 
   serial
   );
+  
+  inc(pinginc);
  
-  writeln('xdg_wm_base_ping done');
+  writeln(inttostr(pinginc) + ' ping done of 100');
 end;
 
 procedure xdg_wm_base_add_listener(xdg_wm_base: Pxdg_wm_base; listener: Pxdg_wm_base_listener; Data:
@@ -375,15 +378,18 @@ begin
       wrap_wl_surface_commit(surface);
       writeln('wrap_wl_surface_commit');
 
-      while (wl_display_dispatch(display) <> -1) do
+      while (wl_display_dispatch(display) <> -1) and (pinginc < 100) do
         begin
         { This space deliberately left blank }
         end;
 
       wl_display_disconnect(display);
+      
+      writeln();
       writeln('wl_display_disconnect');
       ww_Unload();
-
+      writeln('Bye!');
+      
     end
   else
     writeln('libwayland_wrapper.so did not load.');

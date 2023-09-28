@@ -1531,7 +1531,7 @@ findhistory=20
  global
 findoptions=1
 editpos=1
- 0,265
+ 37,385
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
@@ -1561,8 +1561,8 @@ windowlayout=543
  ny=0
  ncx=0
  ncy=0
- x=73
- y=78
+ x=5
+ y=101
  cx=1334
  cy=665
  rcx=0
@@ -1993,8 +1993,8 @@ windowlayout=543
  mdistate=0
  nx=0
  ny=0
- ncx=1320
- ncy=61
+ ncx=1321
+ ncy=57
  x=0
  y=0
  cx=1321
@@ -2010,8 +2010,8 @@ windowlayout=543
  [debuggerfo.file_history]
  value=/home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
  history=20
-  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
   /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
+  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
   /home/fred/wayland-c/main3.c
   /home/fred/wayland-c/chatgpt_wrapper.txt
   /home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
