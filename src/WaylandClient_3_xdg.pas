@@ -25,9 +25,9 @@ var
   surface: Pwl_surface;
   xdg_surface: Pxdg_surface;
   xdg_toplevel: Pxdg_toplevel;
+  xdg_wm_base_listener: Txdg_wm_base_listener;
 
-function allocate_shm_file(size: csize_t): cint;
-cdecl;
+function allocate_shm_file(size: csize_t): cint; cdecl;
 var 
   fd, ret: cint;
   nullByte: byte;
@@ -205,7 +205,8 @@ end;
 
 procedure xdg_wm_base_ping(Data: Pointer; xdg_wm_base: Pxdg_wm_base; serial: cuint); cdecl;
 begin
-   writeln('xdg_wm_base_ping called');
+  writeln('xdg_wm_base_ping done');
+  
   wl_proxy_marshal_flags_ping(
                               Pwl_proxy(xdg_wm_base), 
   XDG_WM_BASE_PONG_, 
@@ -214,6 +215,7 @@ begin
   0, 
   serial
   );
+ 
 end;
 
 // xdg_wm_base
@@ -230,7 +232,7 @@ begin
 
   if listener^.ping <> nil then
     begin
-      resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), Pointer(listener), Data);
+       resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), (listener), Data);
       writeln('xdg_wm_base_add_listener = ' + IntToStr(resu));
     end
   else
@@ -241,7 +243,7 @@ procedure registry_global(Data: Pointer; wl_registry: Pwl_registry; Name: cuint;
                           version: cuint); cdecl;
 var 
   state: Pwl_display;
-  xdg_wm_base_listener: Txdg_wm_base_listener;
+  
 begin
   state := Pwl_display(Data);
 
@@ -259,10 +261,10 @@ begin
            xdg_wm_base := wrap_wl_registry_bind(wl_registry, Name, @xdg_wm_base_interface, 1);
 
            // Initialize listener
-           xdg_wm_base_listener.ping := @xdg_wm_base_ping;
+            xdg_wm_base_listener.ping := @xdg_wm_base_ping;
 
            // test it.
-           // xdg_wm_base_listener.ping(data, pointer(xdg_wm_base), version)  ;
+            xdg_wm_base_listener.ping(data, pointer(xdg_wm_base), version)  ;
 
            xdg_wm_base_add_listener(xdg_wm_base, @xdg_wm_base_listener, state);
 
@@ -378,6 +380,7 @@ begin
       while (wl_display_dispatch(display) <> -1) do
         begin
         { This space deliberately left blank }
+       // wl_display_flush(display);
         end;
 
       wl_display_disconnect(display);

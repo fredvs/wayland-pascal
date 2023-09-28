@@ -248,7 +248,7 @@ options=114
  sorted=0
  col=-1073741823
  row=-1073741823
- rowheight=22
+ rowheight=20
  [projectoptionsfo.newfile]
  firsttab=0
  index=2
@@ -270,9 +270,9 @@ options=114
  sortdescend6=0
  [projectoptionsfo.macrosplitter]
  x=0
- y=215
+ y=217
  xprop=1
- yprop=0.39708561020036
+ yprop=0.39783001808318
  [projectoptionsfo.macrogrid]
  propcolwidthref=609
  sortdescend0=0
@@ -297,7 +297,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=2
+ index=0
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=827
  width0=47
@@ -321,8 +321,8 @@ options=114
  index=2
  [projectoptionsfo]
  stackedunder=
- x=568
- y=209
+ x=553
+ y=236
  cx=887
  cy=618
 settaborder=15
@@ -912,10 +912,10 @@ makeoptionson=9
  4083
  4083
 compilerusedon=29
- 4095
+ 4091
  0
  0
- 0
+ 4
  0
  0
  0
@@ -1507,7 +1507,7 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=pong
+finddtext=ping
 findhistory=20
  pong
  pInterfaces
@@ -1531,7 +1531,7 @@ findhistory=20
  global
 findoptions=1
 editpos=1
- 0,390
+ 58,205
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
@@ -1547,7 +1547,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=557
+windowlayout=543
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1561,8 +1561,8 @@ windowlayout=557
  ny=0
  ncx=0
  ncy=0
- x=37
- y=109
+ x=91
+ y=76
  cx=1334
  cy=665
  rcx=0
@@ -1589,8 +1589,8 @@ windowlayout=557
  ny=0
  ncx=0
  ncy=0
- x=639
- y=447
+ x=668
+ y=185
  cx=497
  cy=314
  rcx=0
@@ -1646,7 +1646,7 @@ windowlayout=557
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=findinfilefo
+ stackedunder=threadsfo
  parent=
  mdistate=0
  nx=0
@@ -1665,7 +1665,7 @@ windowlayout=557
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=targetconsolefo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1994,11 +1994,11 @@ windowlayout=557
  nx=0
  ny=0
  ncx=1320
- ncy=63
+ ncy=60
  x=0
  y=0
  cx=1321
- cy=60
+ cy=57
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2008,8 +2008,9 @@ windowlayout=557
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
- history=34
+ value=/home/fred/wayland-pascal/src/xdg_shell_protocol.pas
+ history=20
+  /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/wayland-c/main3.c
   /home/fred/wayland-c/chatgpt_wrapper.txt
   /home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
@@ -2022,7 +2023,6 @@ windowlayout=557
   /home/fred/wayland-demo-c/xdg-shell.h
   /home/fred/wayland-demo-c/runme
   /home/fred/wayland-pascal/src/wayland_client_core.pas
-  /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/wayland-pascal/src/wayland_protocol.pas
   /home/fred/wayland-pascal/src/wayland_util.pas
   /home/fred/wayland-pascal/src/WaylandCient_3_xdg.pas
@@ -2030,20 +2030,6 @@ windowlayout=557
   /home/fred/wayland-pascal/src/WaylandCient_xdg.pas
   /home/fred/wayland-pascal/src/xdg_shell_unstable_v5_protocol.pas
   /home/fred/wayland-pascal/src/waylandbook2.pas
-  /home/fred/wayland-pascal/src/WaylandClient_all.pas
-  /home/fred/wayland-pascal/src/WaylandXDGShell.pas
-  /home/fred/wayland-pascal/src/xdg_shell_protocol.pas
-  /home/fred/wayland-pascal/src/WaylandClient_all
-  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msecolordialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefontformatdialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefiledialog.pas
-  /home/fred/strumpract-main/src/aboutform.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
