@@ -26,35 +26,6 @@ var
   xdg_surface: Pxdg_surface;
   xdg_toplevel: Pxdg_toplevel;
 
-function xdg_wm_base_get_xdg_surface(xdg_wm_base: Pxdg_wm_base; surface: Pwl_surface): Pxdg_surface;
-cdecl;
-var 
-  id: Pwl_proxy;
-  inte: integer;
-begin
-  id := Nil;
-
-  inte := wl_proxy_get_version(Pwl_proxy(xdg_wm_base));
-  writeln('xdg_wm_base version ' + IntToStr(inte));
-
-  id := wl_proxy_marshal_flags_get_xdg_surface(
-        Pwl_proxy(xdg_wm_base),
-        XDG_WM_BASE_GET_XDG_SURFACE_, 
-        @xdg_surface_interface,
-        wl_proxy_get_version(Pwl_proxy(xdg_wm_base)),
-        0,
-        Nil,
-        surface
-        );
-
-  Result := Pxdg_surface(id);
-
-  if Result = nil then
-    writeln('Pxdg_surface NOT OK ')
-  else
-    writeln('Pxdg_surface OK ');
-end;
-
 function allocate_shm_file(size: csize_t): cint;
 cdecl;
 var 
@@ -149,8 +120,37 @@ begin
   Result := buffer;
 end;
 
-procedure xdg_surface_ack_configure(xdg_surface: Pxdg_surface; serial: DWord);
-cdecl;
+// Surface
+
+function xdg_wm_base_get_xdg_surface(xdg_wm_base: Pxdg_wm_base; surface: Pwl_surface): Pxdg_surface; cdecl;
+var 
+  id: Pwl_proxy;
+  inte: integer;
+begin
+  id := Nil;
+
+  inte := wl_proxy_get_version(Pwl_proxy(xdg_wm_base));
+  writeln('xdg_wm_base version ' + IntToStr(inte));
+
+  id := wl_proxy_marshal_flags_get_xdg_surface(
+        Pwl_proxy(xdg_wm_base),
+        XDG_WM_BASE_GET_XDG_SURFACE_, 
+        @xdg_surface_interface,
+        wl_proxy_get_version(Pwl_proxy(xdg_wm_base)),
+        0,
+        Nil,
+        surface
+        );
+
+  Result := Pxdg_surface(id);
+
+  if Result = nil then
+    writeln('Pxdg_surface NOT OK ')
+  else
+    writeln('Pxdg_surface OK ');
+end;
+
+procedure xdg_surface_ack_configure(xdg_surface: Pxdg_surface; serial: DWord); cdecl;
 begin
   // if xdg_surface <> nil then writeln('xdg_surface OK') else
   //  writeln('xdg_surface NOT OK') ;
@@ -165,11 +165,9 @@ begin
   wl_proxy_get_version(Pwl_proxy(xdg_surface)), 
   0, 
   serial);
-
 end;
 
-procedure xdg_surface_configure(Data: Pointer; xdg_surface: Pxdg_surface; serial: cuint);
-cdecl;
+procedure xdg_surface_configure(Data: Pointer; xdg_surface: Pxdg_surface; serial: cuint); cdecl;
 var 
   state: Pwl_display = nil;
   buffer: Pwl_buffer = nil;
@@ -198,8 +196,14 @@ begin
     writeln('buffer xdg_surface_configure NOT OK');
 end;
 
-procedure xdg_wm_base_ping(Data: Pointer; xdg_wm_base: Pxdg_wm_base; serial: cuint);
-cdecl;
+function xdg_surface_add_listener(xdg_surface: Pxdg_surface; listener: Pxdg_surface_listener; Data:
+                                  Pointer): longint; cdecl;
+begin
+  Result := wl_proxy_add_listener(Pwl_proxy(xdg_surface), Pointer(listener), Data);
+  writeln('xdg_surface_add_listener = ' + IntToStr(Result));
+end;
+
+procedure xdg_wm_base_ping(Data: Pointer; xdg_wm_base: Pxdg_wm_base; serial: cuint); cdecl;
 begin
    writeln('xdg_wm_base_ping called');
   wl_proxy_marshal_flags_ping(
@@ -212,9 +216,10 @@ begin
   );
 end;
 
+// xdg_wm_base
+
 procedure xdg_wm_base_add_listener(xdg_wm_base: Pxdg_wm_base; listener: Pxdg_wm_base_listener; Data:
-                                   Pointer);
-cdecl;
+                                   Pointer); cdecl;
 var 
   resu: integer;
 begin
@@ -225,24 +230,15 @@ begin
 
   if listener^.ping <> nil then
     begin
-      resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), Pointer(listener^.ping), Data);
+      resu := wl_proxy_add_listener(Pwl_proxy(xdg_wm_base), Pointer(listener), Data);
       writeln('xdg_wm_base_add_listener = ' + IntToStr(resu));
     end
   else
     writeln('@listener.ping = nil');
 end;
 
-function xdg_surface_add_listener(xdg_surface: Pxdg_surface; listener: Pxdg_surface_listener; Data:
-                                  Pointer): longint;
-cdecl;
-begin
-  Result := wl_proxy_add_listener(Pwl_proxy(xdg_surface), Pointer(listener), Data);
-  writeln('xdg_surface_add_listener = ' + IntToStr(Result));
-end;
-
 procedure registry_global(Data: Pointer; wl_registry: Pwl_registry; Name: cuint; iface: PChar;
-                          version: cuint);
-cdecl;
+                          version: cuint); cdecl;
 var 
   state: Pwl_display;
   xdg_wm_base_listener: Txdg_wm_base_listener;
@@ -273,8 +269,7 @@ begin
          end;
 end;
 
-function xdg_surface_get_toplevel(xdg_surface: Pxdg_surface): Pxdg_toplevel;
-cdecl;
+function xdg_surface_get_toplevel(xdg_surface: Pxdg_surface): Pxdg_toplevel; cdecl;
 begin
   Result := Nil;
   Result := Pxdg_toplevel(
@@ -292,8 +287,7 @@ begin
 
 end;
 
-procedure xdg_toplevel_set_title(xdg_toplevel: Pxdg_toplevel; title: PChar);
-cdecl;
+procedure xdg_toplevel_set_title(xdg_toplevel: Pxdg_toplevel; title: PChar); cdecl;
 begin
   wl_proxy_marshal_flags_set_title(
                                    Pwl_proxy(xdg_toplevel), 
@@ -306,8 +300,7 @@ begin
 end;
 
 
-procedure registry_global_remove(Data: Pointer; wl_registry: Pwl_registry; Name: cuint);
-cdecl;
+procedure registry_global_remove(Data: Pointer; wl_registry: Pwl_registry; Name: cuint); cdecl;
 begin
     { This space deliberately left blank }
 end;
