@@ -1526,7 +1526,7 @@ findhistory=20
  tfiledialog
 findoptions=1
 editpos=3
- 0,55
+ 0,12
  0,-1073741823
  0,-1073741823
 bookmarks0=0
@@ -1566,8 +1566,8 @@ windowlayout=540
  ny=0
  ncx=0
  ncy=0
- x=105
- y=130
+ x=4
+ y=64
  cx=1436
  cy=724
  rcx=0
@@ -1651,7 +1651,7 @@ windowlayout=540
  [disassfo]
  splitdir=0
  useroptions=268451947
- stackedunder=stackfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0

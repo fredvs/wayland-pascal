@@ -1526,7 +1526,7 @@ findhistory=20
  defineproperties
 findoptions=1
 editpos=1
- 0,10
+ 32,2
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_1_connect.pas
@@ -1556,7 +1556,7 @@ windowlayout=526
  ny=0
  ncx=0
  ncy=0
- x=34
+ x=4
  y=64
  cx=1436
  cy=724
@@ -1592,7 +1592,7 @@ windowlayout=526
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -1660,7 +1660,7 @@ windowlayout=526
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1693,15 +1693,15 @@ windowlayout=526
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=11
+ propcolwidthref=27
  width0=141
  sortdescend0=0
- width1=9
+ width1=25
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=22
+ rowheight=17
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1779,10 +1779,10 @@ windowlayout=526
  [breakpointsfo.bkptson]
  value=1
  [objectinspectorfo.grid]
- propcolwidthref=240
- width0=57
+ propcolwidthref=441
+ width0=105
  sortdescend0=0
- width1=177
+ width1=330
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1875,8 +1875,8 @@ windowlayout=526
  ncx=0
  ncy=0
  x=0
- y=610
- cx=1422
+ y=612
+ cx=1423
  cy=88
  rcx=0
  rcy=0
@@ -1976,8 +1976,8 @@ windowlayout=526
  ncy=0
  x=0
  y=0
- cx=1422
- cy=63
+ cx=1423
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1992,8 +1992,8 @@ windowlayout=526
  ncy=63
  x=0
  y=0
- cx=1422
- cy=63
+ cx=1423
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2024,8 +2024,8 @@ windowlayout=526
  ncy=0
  x=0
  y=0
- cx=1422
- cy=541
+ cx=1423
+ cy=547
  rcx=0
  rcy=0
  [sourcefo.files_tab]
@@ -2064,9 +2064,9 @@ windowlayout=526
  ncx=0
  ncy=0
  x=0
- y=66
- cx=1422
- cy=541
+ y=62
+ cx=1423
+ cy=547
  rcx=0
  rcy=0
 [targetconsole]

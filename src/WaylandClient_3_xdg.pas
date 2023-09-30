@@ -7,14 +7,16 @@ program WaylandClient_3_xdg;
 {$interfaces corba}
 
 uses 
-cmem, 
+cmem,
+classes, 
 ctypes, 
 BaseUnix, 
 wayland_client_core, 
 wayland_protocol, 
 xdg_shell_protocol, 
-wayland_client_wrapper, 
 SysUtils;
+
+const dirdat = 'test.dat';
 
 var 
   display: Pwl_display;
@@ -33,7 +35,7 @@ var
   fd, ret: cint;
   nullByte: byte;
 begin
-  Fd := FileCreate('test.dat');
+  Fd := FileCreate(dirdat);
   // writeln('allocate_shm_file fd = ' + inttostr(fd));
   if fd < 0 then
     Exit(-1);
@@ -42,7 +44,7 @@ begin
   nullByte := 0;
   FileWrite(fd, nullByte, 1);
   fpClose(fd);
-  fd       := fpOpen('test.dat', O_RDWR);
+  fd       := fpOpen(dirdat, O_RDWR);
   Result   := fd;
 end;
 
@@ -93,15 +95,15 @@ begin
   // writeln('before pool') ; 
   pool := Nil;
 
-  pool := wrap_wl_shm_create_pool(shm, fd, size);
+  pool := wl_shm_create_pool(shm, fd, size);
 
-// if pool = nil then writeln('wrap_wl_shm_create_pool = NOT OK') else writeln('wrap_wl_shm_create_pool = OK');
+// if pool = nil then writeln('wl_shm_create_pool = NOT OK') else writeln('wl_shm_create_pool = OK');
 
-  buffer := wrap_wl_shm_pool_create_buffer(pool, 0, Width, Height, stride, WL_SHM_FORMAT_XRGB8888);
+  buffer := wl_shm_pool_create_buffer(pool, 0, Width, Height, stride, WL_SHM_FORMAT_XRGB8888);
 
-//if buffer = nil then writeln('wrap_wl_shm_pool_create_buffer = NOT OK') else writeln('wrap_wl_shm_pool_create_buffer = OK');
+//if buffer = nil then writeln('wl_shm_pool_create_buffer = NOT OK') else writeln('wl_shm_pool_create_buffer = OK');
 
-  wrap_wl_shm_pool_destroy(pool);
+  wl_shm_pool_destroy(pool);
 
   fpclose(fd);
 
@@ -115,8 +117,8 @@ begin
 
   FpMunmap(Data, size);
 
-  wrap_wl_surface_attach(surface, buffer, 0, 0);
-  wrap_wl_surface_commit(surface);
+  wl_surface_attach(surface, buffer, 0, 0);
+  wl_surface_commit(surface);
 
   Result := buffer;
 end;
@@ -189,8 +191,8 @@ begin
 
   if buffer <> nil then
     begin
-      wrap_wl_surface_attach(surface, buffer, 0, 0);
-      wrap_wl_surface_commit(surface);
+      wl_surface_attach(surface, buffer, 0, 0);
+      wl_surface_commit(surface);
       //writeln('buffer xdg_surface_configure OK') ;
     end
   else
@@ -254,13 +256,13 @@ begin
   //writeln('version = ' + inttostr(version));
 
   if AnsiCompareStr(iface, wl_shm_interface.Name) = 0 then
-    shm        := wrap_wl_registry_bind(wl_registry, Name, @wl_shm_interface, 1)
+    shm        := wl_registry_bind(wl_registry, Name, @wl_shm_interface, 1)
   else if AnsiCompareStr(iface, wl_compositor_interface.Name) = 0 then
-         compositor := wrap_wl_registry_bind(wl_registry, Name, @wl_compositor_interface, 4)
+         compositor := wl_registry_bind(wl_registry, Name, @wl_compositor_interface, 4)
 
   else if AnsiCompareStr(iface, xdg_wm_base_interface.Name) = 0 then
          begin
-           xdg_wm_base := wrap_wl_registry_bind(wl_registry, Name, @xdg_wm_base_interface, 1);
+           xdg_wm_base := wl_registry_bind(wl_registry, Name, @xdg_wm_base_interface, 1);
 
            // Initialize listener
             xdg_wm_base_listener.ping := @xdg_wm_base_ping;
@@ -311,13 +313,12 @@ end;
 var 
   listener: Twl_registry_listener;
   xdg_surface_listener: Txdg_surface_listener;
-
+  Sres: TResourceStream;  // for resource library.
+  Fres: TFileStream;
+  dirlib : string;
+    
 begin
-  { Load dynamically libwayland_client_wrapper.so }
-  if ww_Load(ExtractFilePath(ParamStr(0)) + '/libwayland_wrapper.so') then
-    begin
-
-    { Initialize Wayland objects }
+      { Initialize Wayland objects }
       shm         := Nil;
       compositor  := Nil;
       xdg_wm_base := Nil;
@@ -330,7 +331,7 @@ begin
       else
         writeln('Display not connected');
 
-      registry := wrap_wl_display_get_registry(display);
+      registry := wl_display_get_registry(display);
       if registry <> nil then
         writeln('registry connected')
       else
@@ -342,13 +343,13 @@ begin
       listener.global_remove := @registry_global_remove;
       writeln('listener.global_remove');
 
-      wrap_wl_registry_add_listener(registry, @listener, display);
-      writeln('wrap_wl_registry_add_listener');
+      wl_registry_add_listener(registry, @listener, display);
+      writeln('wl_registry_add_listener');
 
       wl_display_roundtrip(display);
       writeln('wl_display_roundtrip');
 
-      surface := wrap_wl_compositor_create_surface(compositor);
+      surface := wl_compositor_create_surface(compositor);
       if surface <> nil then
         writeln('surface connected')
       else
@@ -375,8 +376,8 @@ begin
       xdg_toplevel_set_title(xdg_toplevel, 'Example client');
       writeln('xdg_toplevel_set_title');
 
-      wrap_wl_surface_commit(surface);
-      writeln('wrap_wl_surface_commit');
+      wl_surface_commit(surface);
+      writeln('wl_surface_commit');
 
       while (wl_display_dispatch(display) <> -1) and (pinginc < 100) do
         begin
@@ -387,10 +388,10 @@ begin
       
       writeln();
       writeln('wl_display_disconnect');
-      ww_Unload();
+    
+      deletefile(dirdat);
+      
+      writeln();
       writeln('Bye!');
       
-    end
-  else
-    writeln('libwayland_wrapper.so did not load.');
-end.
+    end.

@@ -1,41 +1,14 @@
-{*
- * Copyright © 2008 Kristian Høgsberg
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice (including the
- * next paragraph) shall be included in all copies or substantial
- * portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *}
-
 // Pascal translation by Andrews Haines.
 // This unit is part of fpc-wayland project
 // From https://github.com/andrewd207/fpc-wayland
 
-// Wrapped methods by Fred vS 2023.
+// Wrapped inlined methods by Fred vS 2023.
 
 unit wayland_client_core;
 
 {$mode objfpc}{$H+}
 {$packrecords c}
 {$linklib wayland-client}
-
-// {$linklib wayland_wrapper} // uncomment if you want static loading
 
 interface
 
@@ -48,6 +21,16 @@ const
   XDG_SURFACE_ACK_CONFIGURE_ = 4;
   XDG_SURFACE_GET_TOPLEVEL_ = 1;
   XDG_WM_BASE_PONG_ = 3;
+  WL_DISPLAY_GET_REGISTRY_ = 1;
+  WL_REGISTRY_BIND_ = 0;
+  WL_COMPOSITOR_CREATE_SURFACE_ = 0;
+  WL_SHELL_GET_SHELL_SURFACE_ = 0;
+  WL_SHELL_SURFACE_SET_TOPLEVEL_ = 3;
+  WL_SHM_CREATE_POOL_ =	0;
+  WL_SHM_POOL_CREATE_BUFFER_ =	0;
+  WL_SURFACE_ATTACH_ = 1;
+  WL_SURFACE_COMMIT_ =	6;
+  WL_SHM_POOL_DESTROY_ =	1;
 
 type
   Pwl_display = pointer; //^Twl_display;
@@ -151,8 +134,6 @@ type
   end;
 
   { Twl_event_queue }
-
-
 procedure wl_event_queue_destroy(queue: Pwl_event_queue); cdecl; external;
 
 procedure wl_proxy_marshal(p: Pwl_proxy; opcode: cint32); cdecl; external; varargs;
@@ -251,49 +232,127 @@ procedure wl_proxy_marshal_flags_ping(
   serial: DWord
 ); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
- // uncomment the following if you want static loading
-{
+// inlined method
+function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry;
 
-function  wrap_wl_display_get_registry(wl_display_: pwl_display): pwl_registry; cdecl; external 'libwayland_wrapper';
+function wl_registry_add_listener(wl_registry: Pwl_registry;
+  const listener: Pwl_registry_listener; data: Pointer): Integer;
 
-function  wrap_wl_registry_add_listener(wl_registry: pwl_registry;
-const listener: Pwl_registry_listener; data: pointer): cint; cdecl; external 'libwayland_wrapper';
+function wl_registry_bind(wl_registry: Pwl_registry; name: longword;
+  const interfac: Pwl_interface; version: longword): Pointer;
+  
+function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface;
 
-function wrap_wl_registry_bind(registry: Pwl_registry; name: LongWord;
-  interface_: Pwl_interface; version: LongWord): Pointer; cdecl;
-  external 'libwayland_wrapper';
- 
+function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface;
 
-function wrap_wl_compositor_create_surface(compositor: Pwl_compositor): Pwl_surface; cdecl;
-  external 'libwayland_wrapper'; 
+procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface);
+
+function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool;
+
+function wl_shm_pool_create_buffer(wl_shm_pool: Pwl_shm_pool; offset, width, height, stride: Int32; format: UInt32): Pwl_buffer;
+
+procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32);
   
-function wrap_wl_shell_get_shell_surface(shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface; cdecl;
-  external 'libwayland_wrapper'; 
-  
-procedure wrap_wl_shell_surface_set_toplevel(shell_surface: Pwl_shell_surface); cdecl;
-  external 'libwayland_wrapper';  
-  
-function wrap_wl_shm_create_pool(shm: Pwl_shm; fd: Integer; size: Integer): Pwl_shm_pool; cdecl;
-  external 'libwayland_wrapper'; 
-  
-function wrap_wl_shm_pool_create_buffer(pool: Pwl_shm_pool; offset, width, height, stride, format: Integer): Pwl_buffer; cdecl;
-  external 'libwayland_wrapper';
-  
-procedure wrap_wl_surface_attach(surface: Pwl_surface; buffer: Pwl_buffer; x, y: Integer); cdecl;
-  external 'libwayland_wrapper';
-  
-procedure wrap_wl_surface_commit(surface: Pwl_surface); cdecl;
-  external 'libwayland_wrapper';
-  
-procedure wrap_wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; 
-  external 'libwayland_wrapper';
- 
-}  
+procedure wl_surface_commit(wl_surface: Pwl_surface);
+
+procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool);
   
 implementation
 uses
   wayland_protocol, BaseUnix, syscall;
 
+// inlined method
+function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry;
+begin
+  Result := Pwl_registry(wl_proxy_marshal_constructor(Pwl_proxy(wl_display),
+             WL_DISPLAY_GET_REGISTRY_, @wl_registry_interface, nil));
+end;
+
+// inlined methods
+function wl_registry_add_listener(wl_registry: Pwl_registry;
+  const listener: Pwl_registry_listener; data: Pointer): Integer;
+begin
+  Result := wl_proxy_add_listener(Pwl_proxy(wl_registry),
+             Pointer(listener), data);
+end;
+
+// inlined methods
+function wl_registry_bind(wl_registry: Pwl_registry; name: longword;
+  const interfac: Pwl_interface; version: longword): Pointer;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_registry),
+           WL_REGISTRY_BIND_, interfac, name, interfac^.name, version, nil);
+  Result := Pointer(id);
+end;
+
+// inlined method
+function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_compositor),
+           WL_COMPOSITOR_CREATE_SURFACE_, @wl_surface_interface, nil);
+  Result := Pwl_surface(id);
+end;
+
+// inlined method
+function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shell),
+           WL_SHELL_GET_SHELL_SURFACE_, @wl_shell_surface_interface, nil, surface);
+  Result := Pwl_shell_surface(id);
+end;
+
+// inlined method
+procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface);
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_shell_surface), WL_SHELL_SURFACE_SET_TOPLEVEL_);
+end;
+
+// inlined method
+function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shm),
+    WL_SHM_CREATE_POOL_, @wl_shm_pool_interface, nil, fd, size);
+  Result := Pwl_shm_pool(id);
+end;
+
+// inlined method
+function wl_shm_pool_create_buffer(wl_shm_pool: Pwl_shm_pool; offset, width, height, stride: Int32; format: UInt32): Pwl_buffer;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shm_pool),
+    WL_SHM_POOL_CREATE_BUFFER_, @wl_buffer_interface, nil, offset, width, height, stride, format);
+  Result := Pwl_buffer(id);
+end;
+
+// inlined method
+procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32);
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_ATTACH_, wl_buffer, x, y);
+end;
+
+// inlined method
+procedure wl_surface_commit(wl_surface: Pwl_surface);
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_COMMIT_);
+end;
+
+// inlined method
+procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool);
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_shm_pool), WL_SHM_POOL_DESTROY_);
+  wl_proxy_destroy(Pwl_proxy(wl_shm_pool));
+end;
+
+// c functions
 function mkstemp(filename: PChar):longint;cdecl;external 'libc' name 'mkstemp';
 function mkostemp(filename: PChar; flags: LongInt):longint;cdecl;external 'libc' name 'mkostemp';
 
@@ -510,8 +569,6 @@ begin
   //inherited Destroy;
 end;
 
-
-
 { TWLProxyObject }
 
 function TWLProxyObject.GetUserData: Pointer;
@@ -552,4 +609,3 @@ begin
 end;
 
 end.
-
