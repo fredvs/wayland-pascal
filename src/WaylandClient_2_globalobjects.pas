@@ -34,10 +34,7 @@ var
   display: pwl_display;
   registry: pwl_registry;
   registry_listener: wl_registry_listener;
-  Sres: TResourceStream;  // for resource library.
-  Fres: TFileStream;
-  dirlib: string;
-
+  
 begin
     display := wl_display_connect(nil);
     if display <> nil then

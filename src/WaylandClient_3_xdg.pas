@@ -313,10 +313,7 @@ end;
 var 
   listener: Twl_registry_listener;
   xdg_surface_listener: Txdg_surface_listener;
-  Sres: TResourceStream;  // for resource library.
-  Fres: TFileStream;
-  dirlib : string;
-    
+     
 begin
       { Initialize Wayland objects }
       shm         := Nil;
