@@ -6,4 +6,5 @@ https://github.com/andrewd207/fpc-wayland
 
 The demos are inspired by C code of Sergey Bugaev from here:
 https://bugaevc.gitbooks.io/writing-wayland-clients/
+and from C demos of https://wayland-book.com/
 
