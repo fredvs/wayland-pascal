@@ -70,7 +70,7 @@ order17=0
 order18=0
 [projectoptions]
 projectdir=/home/fred/wayland-pascal/src
-projectfilename=/home/fred/wayland-pascal/src/WaylandClient_4_framecallback.prj
+projectfilename=/home/fred/wayland-pascal/src/WaylandClient_5_settingseat.prj
 findinfiledialog=95
  [findinfileadialogfo.subdirs]
  value=1
@@ -139,8 +139,11 @@ findinfiledialog=95
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc" "*.mfm"
  [findinfileadialogfo.findtext]
- value=Pwl_callback_listener
+ value=Pwl_seat_listener
  history=20
+  Pwl_seat_listener
+  Pwl_seat
+  wl_seat_add_listener
   Pwl_callback_listener
   wl_callback_add_listener
   wl_callback
@@ -158,13 +161,10 @@ findinfiledialog=95
   external
   FindPredefinedBrowser
   FindDefaultBrowser
-  lineending
-  sc_file
-  sc_project
  [findinfileadialogfo]
  stackedunder=
  x=210
- y=312
+ y=460
  cx=346
  cy=347
 finddialog=8
@@ -322,7 +322,7 @@ options=114
  [projectoptionsfo]
  stackedunder=
  x=404
- y=191
+ y=228
  cx=887
  cy=618
 settaborder=15
@@ -652,8 +652,8 @@ codetemplateedit=38
  wsize=0
  active=1
  visible=1
-mainfile=WaylandClient_4_framecallback.pas
-targetfile=WaylandClient_4_framecallback${EXEEXT}
+mainfile=WaylandClient_5_settingseat.pas
+targetfile=WaylandClient_5_settingseat${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -1501,8 +1501,11 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=inline
+finddtext=xdg_wm_base_add_listener
 findhistory=20
+ xdg_wm_base_add_listener
+ wl_registry, name, &xdg_wm_base_interface, 1);
+ struct xdg_wm_base *xdg_wm_bas
  inline
  wl_registry_interface
  Pwl_registry_listener
@@ -1520,17 +1523,14 @@ findhistory=20
  wl_callback_add_listener
  Pwl_callback
  Pwl_call
- draw_fr
- wl_compositor
- wl_buffer_release
 findoptions=1
 editpos=1
- 0,3
+ 0,118
 bookmarks0=0
 sourcefiles=1
- ${PROJECTDIR}/WaylandClient_4_framecallback.pas
+ ${PROJECTDIR}/WaylandClient_5_settingseat.pas
 relpaths=1
- WaylandClient_4_framecallback.pas
+ WaylandClient_5_settingseat.pas
 ismoduletexts=1
  0
 modules=0
@@ -1541,7 +1541,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=542
+windowlayout=543
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1555,13 +1555,13 @@ windowlayout=542
  ny=0
  ncx=0
  ncy=0
- x=9
- y=64
- cx=1334
+ x=54
+ y=170
+ cx=837
  cy=673
  rcx=0
  rcy=0
- wsize=0
+ wsize=6
  active=1
  visible=1
  [findmessagefo.findtext]
@@ -1583,8 +1583,8 @@ windowlayout=542
  ny=0
  ncx=0
  ncy=0
- x=495
- y=172
+ x=532
+ y=225
  cx=497
  cy=314
  rcx=0
@@ -1659,7 +1659,7 @@ windowlayout=542
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0
@@ -1692,15 +1692,15 @@ windowlayout=542
  active=0
  visible=0
  [projecttreefo.grid]
- propcolwidthref=26
+ propcolwidthref=27
  width0=141
  sortdescend0=0
- width1=24
+ width1=25
  sortdescend1=0
  sorted=0
  col=1
  row=0
- rowheight=19
+ rowheight=17
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1778,10 +1778,10 @@ windowlayout=542
  [breakpointsfo.bkptson]
  value=1
  [objectinspectorfo.grid]
- propcolwidthref=440
+ propcolwidthref=441
  width0=105
  sortdescend0=0
- width1=329
+ width1=330
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1874,8 +1874,8 @@ windowlayout=542
  ncx=0
  ncy=0
  x=0
- y=520
- cx=1320
+ y=639
+ cx=1427
  cy=127
  rcx=0
  rcy=0
@@ -1975,8 +1975,8 @@ windowlayout=542
  ncy=0
  x=0
  y=0
- cx=1320
- cy=63
+ cx=1427
+ cy=72
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1987,12 +1987,12 @@ windowlayout=542
  mdistate=0
  nx=0
  ny=0
- ncx=1321
- ncy=63
+ ncx=1190
+ ncy=67
  x=0
- y=0
- cx=1320
- cy=67
+ y=7
+ cx=1427
+ cy=83
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2002,14 +2002,15 @@ windowlayout=542
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_4_framecallback.pas
- history=19
+ value=/home/fred/wayland-pascal/src/wayland_client_core.pas
+ history=20
+  /home/fred/wayland-pascal/src/c/WaylandClient_5_settingseat.c
+  /home/fred/wayland-pascal/src/wayland_client_core.pas
   /home/fred/wayland-pascal/src/WaylandClient_4_framecallback.pas
   /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
   /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/wayland-pascal/src/WaylandClient_4_lifecycle.c
   /home/fred/wayland-c/xdg-shell-client-protocol.h
-  /home/fred/wayland-pascal/src/wayland_client_core.pas
   /home/fred/wayland-pascal (copy 1)/src/WaylandClient_3_xdg.c
   /home/fred/wayland-pascal/src/wayland_client_wrapper.pas
   /home/fred/mseide-msegui/apps/ide/projectoptionsform.pas
@@ -2039,8 +2040,8 @@ windowlayout=542
  ncy=0
  x=0
  y=0
- cx=1320
- cy=451
+ cx=1427
+ cy=561
  rcx=0
  rcy=0
  [sourcefo.files_tab]
@@ -2079,9 +2080,9 @@ windowlayout=542
  ncx=0
  ncy=0
  x=0
- y=66
- cx=1320
- cy=451
+ y=75
+ cx=1427
+ cy=561
  rcx=0
  rcy=0
 [targetconsole]

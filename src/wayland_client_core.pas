@@ -48,6 +48,7 @@ type
   Pwl_shm_pool  = Pointer;
   Pwl_buffer  = Pointer;
   Pwl_callback = Pointer;
+  Pwl_seat = Pointer;
    
   Pwl_registry_listener = ^Twl_registry_listener;
   Twl_registry_listener = record
@@ -58,6 +59,12 @@ type
   Pwl_callback_listener = ^Twl_callback_listener;
   Twl_callback_listener = record
     done : procedure(data: Pointer; AWlCallback: Pwl_callback; ACallbackData: DWord); cdecl;
+  end;
+  
+  Pwl_seat_listener = ^Twl_seat_listener;
+  Twl_seat_listener = record
+    capabilities : procedure(data: Pointer; AWlSeat: Pwl_seat; ACapabilities: DWord); cdecl;
+    name : procedure(data: Pointer; AWlSeat: Pwl_seat; AName: Pchar); cdecl;
   end;
 
   { TWLProxyObject }
@@ -276,6 +283,8 @@ function wl_callback_add_listener(wl_callback: Pwl_callback;
 procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt); cdecl; inline;  
 
 procedure wl_callback_destroy(wl_callback: Pwl_callback); cdecl; inline;
+
+function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl; inline;
   
 implementation
 uses
@@ -408,6 +417,12 @@ end;
 procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt);  cdecl;
 begin
   wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_DAMAGE_BUFFER_, x, y, width, height);
+end;
+
+// inlined method
+function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl;
+begin
+  Result := wl_proxy_add_listener(Pwl_proxy(wl_seat), Pointer(listener), data);
 end;
 
 // c functions

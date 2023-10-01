@@ -1526,7 +1526,7 @@ findhistory=20
  defineproperties
 findoptions=1
 editpos=1
- 9,9
+ 0,9
 bookmarks0=0
 sourcefiles=1
  ${PROJECTDIR}/WaylandClient_1_connect.pas
@@ -1556,8 +1556,8 @@ windowlayout=526
  ny=0
  ncx=0
  ncy=0
- x=4
- y=64
+ x=0
+ y=109
  cx=1436
  cy=724
  rcx=0
@@ -1988,8 +1988,8 @@ windowlayout=526
  mdistate=0
  nx=0
  ny=0
- ncx=1422
- ncy=63
+ ncx=1423
+ ncy=59
  x=0
  y=0
  cx=1423
