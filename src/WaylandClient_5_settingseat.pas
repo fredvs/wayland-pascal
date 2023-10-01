@@ -1,6 +1,6 @@
 // By Fred vS 2023.
 
-program WaylandClient_5_framecallback;
+program WaylandClient_5_settingseat;
 
 {$mode objfpc}{$H+}
 {$packrecords c}
