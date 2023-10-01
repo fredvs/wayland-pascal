@@ -1,5 +1,5 @@
 # wayland-pascal
-Demos of wayland client using fpc Pascal compiler.
+Demos step by step of wayland client using fpc Pascal compiler.
 
 It uses the excellent fpc-wayland Bindings Generator for freepascal from Andrews Haines.
 https://github.com/andrewd207/fpc-wayland
