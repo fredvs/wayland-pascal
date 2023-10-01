@@ -70,7 +70,7 @@ order17=0
 order18=0
 [projectoptions]
 projectdir=/home/fred/wayland-pascal/src
-projectfilename=/home/fred/wayland-pascal/src/WaylandClient_1_connect.prj
+projectfilename=/home/fred/wayland-pascal/src/WaylandClient_4_framecallback.prj
 findinfiledialog=95
  [findinfileadialogfo.subdirs]
  value=1
@@ -109,13 +109,14 @@ findinfiledialog=95
   "*.pas" "*.pp" "*.inc" "*.prj"
  [findinfileadialogfo.dir]
  filenames=1
-  /usr/share/lazarus/
+  /home/fred/fpc-wayland-master/
  filecolwidth=150
  x=466
  y=190
  cx=608
  cy=346
  filehistory=20
+  /home/fred/fpc-wayland-master/
   /usr/share/lazarus/
   /home/fred/mseide-msegui/
   /home/fred/strumpract-main/
@@ -135,47 +136,46 @@ findinfiledialog=95
   /home/fred/fpc331trunk/
   /home/fred/strumpract/src/
   /home/fred/ideu_github/
-  /home/fred/mseuniverse/
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc" "*.mfm"
  [findinfileadialogfo.findtext]
- value=FindPredefinedBrowser
+ value=Pwl_callback_listener
  history=20
+  Pwl_callback_listener
+  wl_callback_add_listener
+  wl_callback
+  pwl_registry_listener
+  wl_display_get_
+  wl_proxy_add_listener
+  wl_surface_attach
+  wl_compositor_create_surface
+  wl_cursor_image_get_buffer
+  wl_cursor_theme_get_cursor
+  wl_cursor_theme_load
+  wl_seat_get_pointer
+  wl_display_get_registry
+  wl_display_roundtrip
+  external
   FindPredefinedBrowser
   FindDefaultBrowser
   lineending
   sc_file
   sc_project
-  sc_is_modified_save
-  recrea
-  directorysep
-  #13
-  is modified
-  TARGETOSDIR
-  sma_targetosdir
-  kernel/linux
-  mseguiintf
-  foneventloopstart
-  doeventloop
-  sys_getcurrentthread
-  wayland
-  uses
-  external
  [findinfileadialogfo]
  stackedunder=
  x=210
- y=164
+ y=312
  cx=346
- cy=373
+ cy=347
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
  [finddialogfo]
  stackedunder=
- x=1048
- y=295
+ x=908
+ y=552
  cx=298
- cy=324
+ cy=302
 replacedialog=33
  [replacedialogfo.promptonreplace]
  value=1
@@ -297,7 +297,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=0
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=827
  width0=47
@@ -321,8 +321,8 @@ options=114
  index=2
  [projectoptionsfo]
  stackedunder=
- x=457
- y=116
+ x=404
+ y=191
  cx=887
  cy=618
 settaborder=15
@@ -652,8 +652,8 @@ codetemplateedit=38
  wsize=0
  active=1
  visible=1
-mainfile=WaylandClient_1_connect.pas
-targetfile=WaylandClient_1_connect${EXEEXT}
+mainfile=WaylandClient_4_framecallback.pas
+targetfile=WaylandClient_4_framecallback${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -899,7 +899,7 @@ modulefiles=0
 befcommandon=0
 makeoptionson=7
  4095
- 3
+ 7
  2047
  2047
  4095
@@ -1501,37 +1501,36 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=tdbnavigator = class(tcustomtoolbar,idbnaviglink)
+finddtext=inline
 findhistory=20
- tdbnavigator = class(tcustomtoolbar,idbnaviglink)
- 
-+tdbnavigator = class(tcustomtoolbar,idbnaviglink)
- dbedit
- debedit
- DataLink
- #13
- projec
- showmessage
- showmessages
- tobjectinspectorfo.objectinspectoronchildscale
- onscroll
- init
- invalid
- sys_getcurrentthread
- tcustomapplication.run
- espeaklibdir
- tfiledialog
- tfiledialog.
- constr
- defineproperties
+ inline
+ wl_registry_interface
+ Pwl_registry_listener
+ yep
+ draw
+ Offset
+ offset =
+ wl_surface_frame_listener
+ wl_surface_frame_done
+ callback
+ Pwl_display
+ uses
+ WL_SHM_FORMAT_XRGB8888
+ .ping
+ wl_callback_add_listener
+ Pwl_callback
+ Pwl_call
+ draw_fr
+ wl_compositor
+ wl_buffer_release
 findoptions=1
 editpos=1
- 9,9
+ 0,3
 bookmarks0=0
 sourcefiles=1
- ${PROJECTDIR}/WaylandClient_1_connect.pas
+ ${PROJECTDIR}/WaylandClient_4_framecallback.pas
 relpaths=1
- WaylandClient_1_connect.pas
+ WaylandClient_4_framecallback.pas
 ismoduletexts=1
  0
 modules=0
@@ -1542,7 +1541,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=526
+windowlayout=542
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1556,10 +1555,10 @@ windowlayout=526
  ny=0
  ncx=0
  ncy=0
- x=4
+ x=34
  y=64
- cx=1436
- cy=724
+ cx=1334
+ cy=673
  rcx=0
  rcy=0
  wsize=0
@@ -1701,7 +1700,7 @@ windowlayout=526
  sorted=0
  col=1
  row=0
- rowheight=17
+ rowheight=20
  [stackfo]
  splitdir=0
  useroptions=268460137
@@ -1875,9 +1874,9 @@ windowlayout=526
  ncx=0
  ncy=0
  x=0
- y=612
- cx=1423
- cy=88
+ y=496
+ cx=1321
+ cy=153
  rcx=0
  rcy=0
  [componentstorefo]
@@ -1976,7 +1975,7 @@ windowlayout=526
  ncy=0
  x=0
  y=0
- cx=1423
+ cx=1321
  cy=59
  rcx=0
  rcy=0
@@ -1988,12 +1987,12 @@ windowlayout=526
  mdistate=0
  nx=0
  ny=0
- ncx=1422
+ ncx=1321
  ncy=63
  x=0
  y=0
- cx=1423
- cy=59
+ cx=1321
+ cy=63
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -2003,11 +2002,27 @@ windowlayout=526
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
- history=3
-  /home/fred/wayland-pascal/src/WaylandClient_1_connect.pas
-  /home/fred/ideU/src/main.pas
-  ${PROJECTDIR}/main.pas
+ value=/home/fred/wayland-pascal/src/wayland_client_core.pas
+ history=19
+  /home/fred/wayland-pascal/src/WaylandClient_4_framecallback.pas
+  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
+  /home/fred/wayland-pascal/src/WaylandClient_4_lifecycle.c
+  /home/fred/wayland-c/xdg-shell-client-protocol.h
+  /home/fred/wayland-pascal/src/wayland_client_core.pas
+  /home/fred/wayland-pascal (copy 1)/src/WaylandClient_3_xdg.c
+  /home/fred/wayland-pascal/src/wayland_client_wrapper.pas
+  /home/fred/mseide-msegui/apps/ide/projectoptionsform.pas
+  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
+  /home/fred/mseide-msegui/lib/common/dialogs/msecolordialog.pas
+  /home/fred/mseide-msegui/lib/common/dialogs/msefontformatdialog.pas
+  /home/fred/mseide-msegui/lib/common/dialogs/msefiledialog.pas
+  /home/fred/strumpract-main/src/aboutform.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -2024,8 +2039,8 @@ windowlayout=526
  ncy=0
  x=0
  y=0
- cx=1423
- cy=547
+ cx=1321
+ cy=431
  rcx=0
  rcy=0
  [sourcefo.files_tab]
@@ -2065,8 +2080,8 @@ windowlayout=526
  ncy=0
  x=0
  y=62
- cx=1423
- cy=547
+ cx=1321
+ cy=431
  rcx=0
  rcy=0
 [targetconsole]

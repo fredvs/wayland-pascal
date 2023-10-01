@@ -175,7 +175,7 @@ finddialog=8
  x=984
  y=552
  cx=298
- cy=324
+ cy=302
 replacedialog=33
  [replacedialogfo.promptonreplace]
  value=1
@@ -1507,8 +1507,9 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=wrap_
+finddtext=test
 findhistory=20
+ test
  wrap_
  wl_shm_pool_destroy
  pong
@@ -1528,58 +1529,25 @@ findhistory=20
  xdg_wm_base_add_listener
  ZXDG_SHELL_V6_PONG
  xdg
- registry_global
 findoptions=1
-editpos=6
- 0,386
- 0,64
- 0,-1073741823
- 0,598
- 0,-1073741823
- 0,-1073741823
+editpos=1
+ 0,360
 bookmarks0=0
-bookmarks1=0
-bookmarks2=0
-bookmarks3=0
-bookmarks4=0
-bookmarks5=0
-sourcefiles=6
+sourcefiles=1
  ${PROJECTDIR}/WaylandClient_3_xdg.pas
- ${PROJECTDIR}/WaylandClient_2_globalobjects.pas
- ${PROJECTDIR}/wayland_client_core.pas
- ${PROJECTDIR}/wayland_client_core.pas
- ${PROJECTDIR}/wayland_protocol.pas
- ${PROJECTDIR}/wayland_client_wrapper.pas
-relpaths=6
+relpaths=1
  WaylandClient_3_xdg.pas
- WaylandClient_2_globalobjects.pas
- wayland_client_core.pas
- wayland_client_core.pas
- wayland_protocol.pas
- wayland_client_wrapper.pas
-ismoduletexts=6
- 0
- 0
- 0
- 0
- 0
+ismoduletexts=1
  0
 modules=0
 moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=6
- 0
- 3
- 2
- 4
- 1
- 5
 firsttab=0
-index=1
+index=0
 [layout]
-windowlayout=543
+windowlayout=537
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -2040,9 +2008,10 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/wayland_client_core.pas
- history=13
+ value=/home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+ history=14
   /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/wayland-pascal/src/wayland_protocol.pas
   /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
   /home/fred/mseide-msegui/apps/ide/projectoptionsform.pas
   /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
@@ -2076,15 +2045,8 @@ windowlayout=543
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=6
-  0
-  3
-  2
-  4
-  1
-  5
  firsttab=0
- index=1
+ index=0
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]

@@ -35,6 +35,7 @@ type
   Pwl_region = Pointer;
   Pwl_subcompositor = Pointer;
   Pwl_subsurface = Pointer;
+
 const
   WL_DISPLAY_ERROR_INVALID_OBJECT = 0; // server couldn't find object
   WL_DISPLAY_ERROR_INVALID_METHOD = 1; // method doesn't exist on the specified interface or malformed request
@@ -53,12 +54,7 @@ type
     global : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord; AInterface: Pchar; AVersion: DWord); cdecl;
     global_remove : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord); cdecl;
   end;
-
-  Pwl_callback_listener = ^Twl_callback_listener;
-  Twl_callback_listener = record
-    done : procedure(data: Pointer; AWlCallback: Pwl_callback; ACallbackData: DWord); cdecl;
-  end;
-
+ 
   Pwl_compositor_listener = ^Twl_compositor_listener;
   Twl_compositor_listener = record
   end;

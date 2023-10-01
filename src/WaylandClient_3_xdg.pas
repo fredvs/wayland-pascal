@@ -9,14 +9,11 @@ program WaylandClient_3_xdg;
 uses 
 cmem,
 classes, 
-ctypes, 
 BaseUnix, 
 wayland_client_core, 
 wayland_protocol, 
 xdg_shell_protocol, 
 SysUtils;
-
-const dirdat = 'test.dat';
 
 var 
   display: Pwl_display;
@@ -29,24 +26,6 @@ var
   xdg_toplevel: Pxdg_toplevel;
   xdg_wm_base_listener: Txdg_wm_base_listener;
   pinginc: integer = 0;
-
-function allocate_shm_file(size: csize_t): cint; cdecl;
-var 
-  fd, ret: cint;
-  nullByte: byte;
-begin
-  Fd := FileCreate(dirdat);
-  // writeln('allocate_shm_file fd = ' + inttostr(fd));
-  if fd < 0 then
-    Exit(-1);
-  // Seek to the desired size and truncate the file
-  FileSeek(fd, int64(size) - 1, 0);
-  nullByte := 0;
-  FileWrite(fd, nullByte, 1);
-  fpClose(fd);
-  fd       := fpOpen(dirdat, O_RDWR);
-  Result   := fd;
-end;
 
 function draw_frame(state: Pwl_display): Pwl_buffer;
 cdecl;
@@ -70,7 +49,7 @@ begin
 
   //writeln('size = ' + inttostr(size));
 
-  fd := allocate_shm_file(size);
+  fd := CreateAnonymousFile(size);
 
   if fd = -1 then
     begin
@@ -386,8 +365,6 @@ begin
       writeln();
       writeln('wl_display_disconnect');
     
-      deletefile(dirdat);
-      
       writeln();
       writeln('Bye!');
       
