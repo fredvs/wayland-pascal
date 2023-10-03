@@ -1,7 +1,7 @@
 /*
    From https://wayland-book.com/xdg-shell-basics/example-code.html
    Compile with: 
-   $ gcc -o client WaylandClient_3_xdg.c xdg-shell-protocol.c -lwayland-client -lrt
+   $ gcc -o xdg WaylandClient_3_xdg.c xdg-shell-protocol.c -lwayland-client -lrt
 */
 
 #define _POSIX_C_SOURCE 200112L
