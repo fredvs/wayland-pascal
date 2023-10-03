@@ -33,6 +33,8 @@ const
   WL_SHM_POOL_DESTROY_ = 1;
   WL_SURFACE_FRAME_ = 3;
   WL_SURFACE_DAMAGE_BUFFER_ = 9;
+  WL_SEAT_GET_POINTER_ = 0;
+  WL_POINTER_RELEASE_ =	1;
 
 type
   Pwl_display = pointer;  
@@ -49,7 +51,8 @@ type
   Pwl_buffer  = Pointer;
   Pwl_callback = Pointer;
   Pwl_seat = Pointer;
-   
+  Pwl_pointer = Pointer;
+     
   Pwl_registry_listener = ^Twl_registry_listener;
   Twl_registry_listener = record
     global : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord; AInterface: Pchar; AVersion: DWord); cdecl;
@@ -66,6 +69,17 @@ type
     capabilities : procedure(data: Pointer; AWlSeat: Pwl_seat; ACapabilities: DWord); cdecl;
     name : procedure(data: Pointer; AWlSeat: Pwl_seat; AName: Pchar); cdecl;
   end;
+  
+  Pwl_pointer_listener = ^Twl_pointer_listener;
+  Twl_pointer_listener = record
+    button: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: uint32); cdecl;
+    axis: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Int32); cdecl;
+    frame: procedure(data: pointer; A1: Pwl_pointer); cdecl;
+    motion: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Int32; A4: Int32); cdecl;
+    enter: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Pwl_surface; A4: Int32; A5: Int32); cdecl;
+    leave: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Pwl_surface); cdecl;
+  end;
+  
 
   { TWLProxyObject }
 
@@ -249,46 +263,68 @@ procedure wl_proxy_marshal_flags_ping(
   serial: DWord
 ); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
+function wl_fixed_to_double(f: int32): Double;
+
 // inlined method
-function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry; cdecl; inline;
+function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry; cdecl; 
 
 function wl_registry_add_listener(wl_registry: Pwl_registry;
-  const listener: Pwl_registry_listener; data: Pointer): Integer; cdecl; inline;
+  const listener: Pwl_registry_listener; data: Pointer): Integer; cdecl; 
 
 function wl_registry_bind(wl_registry: Pwl_registry; name: longword;
-  const interfac: Pwl_interface; version: longword): Pointer; cdecl; inline;
+  const interfac: Pwl_interface; version: longword): Pointer; cdecl; 
   
-function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface; cdecl; inline;
+function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface; cdecl; 
 
-function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface; cdecl; inline;
+function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface; cdecl; 
 
-procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface); cdecl; inline;
+procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface); cdecl; 
 
-function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool; cdecl; inline;
+function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool; cdecl; 
 
 function wl_shm_pool_create_buffer(wl_shm_pool: Pwl_shm_pool; offset, width, height,
-           stride: Int32; format: UInt32): Pwl_buffer; cdecl; inline;
+           stride: Int32; format: UInt32): Pwl_buffer; cdecl; 
 
-procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32); cdecl; inline;
+procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32); cdecl; 
   
-procedure wl_surface_commit(wl_surface: Pwl_surface); cdecl; inline;
+procedure wl_surface_commit(wl_surface: Pwl_surface); cdecl; 
 
-procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; inline;
+procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; 
 
-function wl_surface_frame(wl_surface: Pwl_surface): Pwl_callback; cdecl; inline; 
+function wl_surface_frame(wl_surface: Pwl_surface): Pwl_callback; cdecl;  
 
 function wl_callback_add_listener(wl_callback: Pwl_callback; 
-  listener: Pwl_callback_listener; data: Pointer): Integer; cdecl; inline;
+  listener: Pwl_callback_listener; data: Pointer): Integer; cdecl; 
   
-procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt); cdecl; inline;  
+procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt); cdecl;   
 
-procedure wl_callback_destroy(wl_callback: Pwl_callback); cdecl; inline;
+procedure wl_callback_destroy(wl_callback: Pwl_callback); cdecl; 
 
-function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl; inline;
-  
+function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl; 
+
+function wl_seat_get_pointer(wl_seat: Pwl_seat): Pwl_pointer; cdecl;
+
+function wl_pointer_add_listener(wl_pointer: Pwl_pointer; 
+  const listener: Pwl_pointer_listener; data: Pointer): Integer; cdecl;
+    
+procedure wl_pointer_release(wl_pointer: Pwl_pointer); cdecl;
+
 implementation
 uses
  wayland_protocol, BaseUnix, syscall;
+ 
+function wl_fixed_to_double(f: int32): Double;
+var
+  u: record
+    case Integer of
+      0: (d: Double);
+      1: (i: Int64);
+  end;
+begin
+  u.i := ((1023 + 44) shl 52) + (1 shl 51) + Int64(f);
+  Result := u.d - (3 shl 43);
+end;
+ 
 
 // inlined method
 function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry; cdecl;
@@ -424,6 +460,32 @@ function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; da
 begin
   Result := wl_proxy_add_listener(Pwl_proxy(wl_seat), Pointer(listener), data);
 end;
+
+// inlined method
+function wl_seat_get_pointer(wl_seat: Pwl_seat): Pwl_pointer; cdecl;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_seat),
+    WL_SEAT_GET_POINTER_, @wl_pointer_interface, nil);
+  Result := Pwl_pointer(id);
+end;
+
+// inlined method
+function wl_pointer_add_listener(wl_pointer: Pwl_pointer; 
+  const listener: Pwl_pointer_listener; data: Pointer): Integer; cdecl;
+begin
+  Result := wl_proxy_add_listener(Pwl_proxy(wl_pointer),
+    Pointer(listener), data);
+end;
+
+// inlined method
+procedure wl_pointer_release(wl_pointer: Pwl_pointer); cdecl;
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_pointer), WL_POINTER_RELEASE_);
+  wl_proxy_destroy(Pwl_proxy(wl_pointer));
+end;
+
 
 // c functions
 function mkstemp(filename: PChar):longint;cdecl;external 'libc' name 'mkstemp';

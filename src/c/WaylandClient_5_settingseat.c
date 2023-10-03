@@ -1,3 +1,8 @@
+// From: https://wayland-book.com/seat/example.html
+// Compile with:
+// cc -o settingseat WaylandClient_5_settingseat.c xdg-shell-protocol.c -lwayland-client -lrt
+
+
 #define _POSIX_C_SOURCE 200112L
 #include <errno.h>
 #include <fcntl.h>
