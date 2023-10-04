@@ -35,7 +35,9 @@ const
   WL_SURFACE_DAMAGE_BUFFER_ = 9;
   WL_SEAT_GET_POINTER_ = 0;
   WL_POINTER_RELEASE_ =	1;
-
+  WL_SEAT_GET_KEYBOARD_ = 1;
+  WL_KEYBOARD_RELEASE_ = 0;
+   
 type
   Pwl_display = pointer;  
   Pwl_event_queue = pointer ; 
@@ -80,6 +82,28 @@ type
     leave: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Pwl_surface); cdecl;
   end;
   
+  type
+  Pxdg_toplevel = Pointer;
+
+  
+  Pxdg_toplevel_listener = ^Txdg_toplevel_listener;
+  Txdg_toplevel_listener = record
+    configure : procedure(data: Pointer; AXdgToplevel: Pxdg_toplevel; AWidth: LongInt; AHeight: LongInt; AStates: Pwl_array); cdecl;
+    close : procedure(data: Pointer; AXdgToplevel: Pxdg_toplevel); cdecl;
+  end;
+  
+  Pwl_keyboard = Pointer;
+ 
+  type
+  Pwl_keyboard_listener = ^Twl_keyboard_listener;
+  Twl_keyboard_listener = record
+    keymap : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; AFormat: DWord; AFd: LongInt{fd}; ASize: DWord); cdecl;
+    enter : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; ASerial: DWord; ASurface: Pwl_surface; AKeys: Pwl_array); cdecl;
+    leave : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; ASerial: DWord; ASurface: Pwl_surface); cdecl;
+    key : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; ASerial: DWord; ATime: DWord; AKey: DWord; AState: DWord); cdecl;
+    modifiers : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; ASerial: DWord; AModsDepressed: DWord; AModsLatched: DWord; AModsLocked: DWord; AGroup: DWord); cdecl;
+    repeat_info : procedure(data: Pointer; AWlKeyboard: Pwl_keyboard; ARate: LongInt; ADelay: LongInt); cdecl;
+  end;
 
   { TWLProxyObject }
 
@@ -232,10 +256,6 @@ procedure wl_proxy_marshal_flags_ack_configure(
 ); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
 
-type
-Pxdg_toplevel = Pointer;
-
-
 function wl_proxy_marshal_flags_get_toplevel(
   proxy: Pwl_proxy;
   opcode: DWord;
@@ -308,6 +328,13 @@ function wl_pointer_add_listener(wl_pointer: Pwl_pointer;
   const listener: Pwl_pointer_listener; data: Pointer): Integer; cdecl;
     
 procedure wl_pointer_release(wl_pointer: Pwl_pointer); cdecl;
+
+function wl_seat_get_keyboard(wl_seat: Pwl_seat): Pwl_keyboard; cdecl;
+
+function wl_keyboard_add_listener(wl_keyboard: Pwl_keyboard;
+  const listener: Pwl_keyboard_listener; data: Pointer): Integer; cdecl;
+
+procedure wl_keyboard_release(wl_keyboard: Pwl_keyboard); cdecl;
 
 implementation
 uses
@@ -486,6 +513,27 @@ begin
   wl_proxy_destroy(Pwl_proxy(wl_pointer));
 end;
 
+function wl_seat_get_keyboard(wl_seat: Pwl_seat): Pwl_keyboard; cdecl;
+var
+  id: Pwl_proxy;
+begin
+  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_seat),
+    WL_SEAT_GET_KEYBOARD_, @wl_keyboard_interface, nil);
+  Result := Pwl_keyboard(id);
+end;
+
+function wl_keyboard_add_listener(wl_keyboard: Pwl_keyboard;
+  const listener: Pwl_keyboard_listener; data: Pointer): Integer; cdecl;
+begin
+  Result := wl_proxy_add_listener(Pwl_proxy(wl_keyboard),
+    Pointer(listener), data);
+end;
+
+procedure wl_keyboard_release(wl_keyboard: Pwl_keyboard); cdecl;
+begin
+  wl_proxy_marshal(Pwl_proxy(wl_keyboard), WL_KEYBOARD_RELEASE_);
+  wl_proxy_destroy(Pwl_proxy(wl_keyboard));
+end;
 
 // c functions
 function mkstemp(filename: PChar):longint;cdecl;external 'libc' name 'mkstemp';
