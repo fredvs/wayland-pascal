@@ -172,10 +172,10 @@ finddialog=8
  value=0
  [finddialogfo]
  stackedunder=
- x=925
- y=552
+ x=968
+ y=286
  cx=298
- cy=302
+ cy=324
 replacedialog=33
  [replacedialogfo.promptonreplace]
  value=1
@@ -1501,8 +1501,20 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=xdg_toplevel_listener
+finddtext=Pwl_pointer_listener
 findhistory=20
+ Pwl_pointer_listener
+ Pwl_shell_surface_listener
+ Pwl_seat_listener
+ Pwl_callback_listener
+ Pwl_registry_listener
+ Pxdg_toplevel_listener
+ Pxdg_toplevel
+ implem
+ wl_fixed_to_double
+ wl_registry_add_listener
+ wl_display_get_registry
+ inline
  xdg_toplevel_listener
  dg_toplevel_close
  xdg_toplevel_configure
@@ -1511,31 +1523,29 @@ findhistory=20
  wl_buffer_releas
  struct client_state
  wl_keyboard_enter
- map
- xkbstate
- xkb_state_key_get_one_sym
- xkb_keymap
- wl_pointer_motion
- wl_keyboard_keymap
- xdg_toplevel_add_listener
- xdg_surface_add_listener
- Pxdg_toplevel_listener
- width
- surface_con
- get_layout
 findoptions=1
-editpos=2
- 22,458
+editpos=4
+ 0,441
  0,426
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
-sourcefiles=2
+bookmarks2=0
+bookmarks3=0
+sourcefiles=4
  ${PROJECTDIR}/WaylandClient_9_toplevel.pas
  ${PROJECTDIR}/c/WaylandClient_9_toplevel.c
-relpaths=2
+ ${PROJECTDIR}/wayland_protocol.pas
+ ${PROJECTDIR}/wayland_client_core.pas
+relpaths=4
  WaylandClient_9_toplevel.pas
  c/WaylandClient_9_toplevel.c
-ismoduletexts=2
+ wayland_protocol.pas
+ wayland_client_core.pas
+ismoduletexts=4
+ 0
+ 0
  0
  0
 modules=0
@@ -1543,10 +1553,15 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
+order=4
+ 0
+ 3
+ 1
+ 2
 firsttab=0
 index=0
 [layout]
-windowlayout=547
+windowlayout=548
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1560,8 +1575,8 @@ windowlayout=547
  ny=0
  ncx=0
  ncy=0
- x=93
- y=66
+ x=0
+ y=100
  cx=1334
  cy=673
  rcx=0
@@ -1992,8 +2007,8 @@ windowlayout=547
  mdistate=0
  nx=0
  ny=0
- ncx=1321
- ncy=63
+ ncx=1320
+ ncy=67
  x=0
  y=0
  cx=1321
@@ -2007,10 +2022,12 @@ windowlayout=547
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_9_toplevel.pas
- history=24
-  /home/fred/wayland-pascal/src/c/WaylandClient_7_keyboardevents.c
+ value=/home/fred/wayland-pascal/src/wayland_client_core.pas
+ history=20
   /home/fred/wayland-pascal/src/wayland_client_core.pas
+  /home/fred/wayland-pascal/src/wayland_protocol.pas
+  /home/fred/wayland-pascal/src/c/WaylandClient_9_toplevel.c
+  /home/fred/wayland-pascal/src/c/WaylandClient_7_keyboardevents.c
   /home/fred/wayland-pascal/src/libxkbcommon.pas
   /home/fred/wayland-pascal/src/c/WaylandClient_1_connect.c
   /home/fred/wayland-pascal/src/c/WaylandClient_6_riggingevents.c
@@ -2027,12 +2044,6 @@ windowlayout=547
   /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
   /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
   /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
-  /home/fred/mseide-msegui/lib/common/regcomponents/regzeoslib.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msecolordialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefontformatdialog.pas
-  /home/fred/mseide-msegui/lib/common/dialogs/msefiledialog.pas
-  /home/fred/strumpract-main/src/aboutform.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -2054,6 +2065,11 @@ windowlayout=547
  rcx=0
  rcy=0
  [sourcefo.files_tab]
+ order=4
+  0
+  3
+  1
+  2
  firsttab=0
  index=0
  [confideufo.usedefaulteditoroptions]

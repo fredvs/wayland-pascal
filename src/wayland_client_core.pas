@@ -2,7 +2,7 @@
 // This unit is part of fpc-wayland project
 // From https://github.com/andrewd207/fpc-wayland
 
-// Wrapped inlined methods by Fred vS 2023.
+// Added methods and classes by Fred vS 2023.
 
 unit wayland_client_core;
 
@@ -55,36 +55,13 @@ type
   Pwl_seat = Pointer;
   Pwl_pointer = Pointer;
      
-  Pwl_registry_listener = ^Twl_registry_listener;
-  Twl_registry_listener = record
-    global : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord; AInterface: Pchar; AVersion: DWord); cdecl;
-    global_remove : procedure(data: Pointer; AWlRegistry: Pwl_registry; AName: DWord); cdecl;
-  end;  
-
   Pwl_callback_listener = ^Twl_callback_listener;
   Twl_callback_listener = record
     done : procedure(data: Pointer; AWlCallback: Pwl_callback; ACallbackData: DWord); cdecl;
   end;
   
-  Pwl_seat_listener = ^Twl_seat_listener;
-  Twl_seat_listener = record
-    capabilities : procedure(data: Pointer; AWlSeat: Pwl_seat; ACapabilities: DWord); cdecl;
-    name : procedure(data: Pointer; AWlSeat: Pwl_seat; AName: Pchar); cdecl;
-  end;
-  
-  Pwl_pointer_listener = ^Twl_pointer_listener;
-  Twl_pointer_listener = record
-    button: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: uint32); cdecl;
-    axis: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Int32); cdecl;
-    frame: procedure(data: pointer; A1: Pwl_pointer); cdecl;
-    motion: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Int32; A4: Int32); cdecl;
-    enter: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Pwl_surface; A4: Int32; A5: Int32); cdecl;
-    leave: procedure(data: pointer; A1: Pwl_pointer; A2: uint32; A3: Pwl_surface); cdecl;
-  end;
-  
   type
   Pxdg_toplevel = Pointer;
-
   
   Pxdg_toplevel_listener = ^Txdg_toplevel_listener;
   Txdg_toplevel_listener = record
@@ -283,258 +260,11 @@ procedure wl_proxy_marshal_flags_ping(
   serial: DWord
 ); cdecl; external 'wayland-client' name 'wl_proxy_marshal_flags';
 
-function wl_fixed_to_double(f: int32): Double;
-
-// inlined method
-function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry; cdecl; 
-
-function wl_registry_add_listener(wl_registry: Pwl_registry;
-  const listener: Pwl_registry_listener; data: Pointer): Integer; cdecl; 
-
-function wl_registry_bind(wl_registry: Pwl_registry; name: longword;
-  const interfac: Pwl_interface; version: longword): Pointer; cdecl; 
-  
-function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface; cdecl; 
-
-function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface; cdecl; 
-
-procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface); cdecl; 
-
-function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool; cdecl; 
-
-function wl_shm_pool_create_buffer(wl_shm_pool: Pwl_shm_pool; offset, width, height,
-           stride: Int32; format: UInt32): Pwl_buffer; cdecl; 
-
-procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32); cdecl; 
-  
-procedure wl_surface_commit(wl_surface: Pwl_surface); cdecl; 
-
-procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl; 
-
-function wl_surface_frame(wl_surface: Pwl_surface): Pwl_callback; cdecl;  
-
-function wl_callback_add_listener(wl_callback: Pwl_callback; 
-  listener: Pwl_callback_listener; data: Pointer): Integer; cdecl; 
-  
-procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt); cdecl;   
-
-procedure wl_callback_destroy(wl_callback: Pwl_callback); cdecl; 
-
-function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl; 
-
-function wl_seat_get_pointer(wl_seat: Pwl_seat): Pwl_pointer; cdecl;
-
-function wl_pointer_add_listener(wl_pointer: Pwl_pointer; 
-  const listener: Pwl_pointer_listener; data: Pointer): Integer; cdecl;
-    
-procedure wl_pointer_release(wl_pointer: Pwl_pointer); cdecl;
-
-function wl_seat_get_keyboard(wl_seat: Pwl_seat): Pwl_keyboard; cdecl;
-
-function wl_keyboard_add_listener(wl_keyboard: Pwl_keyboard;
-  const listener: Pwl_keyboard_listener; data: Pointer): Integer; cdecl;
-
-procedure wl_keyboard_release(wl_keyboard: Pwl_keyboard); cdecl;
 
 implementation
 uses
  wayland_protocol, BaseUnix, syscall;
  
-function wl_fixed_to_double(f: int32): Double;
-var
-  u: record
-    case Integer of
-      0: (d: Double);
-      1: (i: Int64);
-  end;
-begin
-  u.i := ((1023 + 44) shl 52) + (1 shl 51) + Int64(f);
-  Result := u.d - (3 shl 43);
-end;
- 
-
-// inlined method
-function wl_display_get_registry(wl_display: Pwl_display): Pwl_registry; cdecl;
-begin
-  Result := Pwl_registry(wl_proxy_marshal_constructor(Pwl_proxy(wl_display),
-             WL_DISPLAY_GET_REGISTRY_, @wl_registry_interface, nil));
-end;
-
-// inlined methods
-function wl_registry_add_listener(wl_registry: Pwl_registry;  
-  const listener: Pwl_registry_listener; data: Pointer): Integer;  cdecl;
-begin
-  Result := wl_proxy_add_listener(Pwl_proxy(wl_registry),
-             Pointer(listener), data);
-end;
-
-// inlined methods
-function wl_registry_bind(wl_registry: Pwl_registry; name: longword;
-  const interfac: Pwl_interface; version: longword): Pointer;  cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_registry),
-           WL_REGISTRY_BIND_, interfac, name, interfac^.name, version, nil);
-  Result := Pointer(id);
-end;
-
-// inlined method
-function wl_compositor_create_surface(wl_compositor: Pwl_compositor): Pwl_surface;  cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_compositor),
-           WL_COMPOSITOR_CREATE_SURFACE_, @wl_surface_interface, nil);
-  Result := Pwl_surface(id);
-end;
-
-// inlined method
-function wl_shell_get_shell_surface(wl_shell: Pwl_shell; surface: Pwl_surface): Pwl_shell_surface;  cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shell),
-           WL_SHELL_GET_SHELL_SURFACE_, @wl_shell_surface_interface, nil, surface);
-  Result := Pwl_shell_surface(id);
-end;
-
-// inlined method
-procedure wl_shell_surface_set_toplevel(wl_shell_surface: Pwl_shell_surface); cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_shell_surface), WL_SHELL_SURFACE_SET_TOPLEVEL_);
-end;
-
-// inlined method
-function wl_shm_create_pool(wl_shm: Pwl_shm; fd, size: Int32): Pwl_shm_pool; cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shm),
-    WL_SHM_CREATE_POOL_, @wl_shm_pool_interface, nil, fd, size);
-  Result := Pwl_shm_pool(id);
-end;
-
-// inlined method
-function wl_shm_pool_create_buffer(wl_shm_pool: Pwl_shm_pool; 
-        offset, width, height, stride: Int32; format: UInt32): Pwl_buffer; cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_shm_pool),
-    WL_SHM_POOL_CREATE_BUFFER_, @wl_buffer_interface, nil, offset, width, height, stride, format);
-  Result := Pwl_buffer(id);
-end;
-
-// inlined method
-procedure wl_surface_attach(wl_surface: Pwl_surface; wl_buffer: Pwl_buffer; x, y: Int32);  cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_ATTACH_, wl_buffer, x, y);
-end;
-
-// inlined method
-procedure wl_surface_commit(wl_surface: Pwl_surface); cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_COMMIT_);
-end;
-
-// inlined method
-procedure wl_shm_pool_destroy(wl_shm_pool: Pwl_shm_pool); cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_shm_pool), WL_SHM_POOL_DESTROY_);
-  wl_proxy_destroy(Pwl_proxy(wl_shm_pool));
-end;
-
-// inlined method
-function wl_callback_add_listener(wl_callback: Pwl_callback; 
-  listener: Pwl_callback_listener; data: Pointer): Integer;  cdecl;
-begin
-  Result := wl_proxy_add_listener(
-              Pwl_proxy(wl_callback),
-              Pointer(listener),
-              data
-            );
-  end;
-
-// inlined method  
-procedure wl_callback_destroy(wl_callback: Pwl_callback); cdecl;
-begin
-  wl_proxy_destroy(Pwl_proxy(wl_callback));
-end;  
-
-// inlined method
-function wl_surface_frame(wl_surface: Pwl_surface): Pwl_callback; cdecl;
-var
-  callback: Pwl_proxy;
-begin
-  callback := wl_proxy_marshal_constructor(
-                Pwl_proxy(wl_surface),
-                WL_SURFACE_FRAME_,
-                @wl_callback_interface,
-                nil
-              );
-  Result := Pwl_callback(callback);
-end;
-
-// inlined method
-procedure wl_surface_damage_buffer(wl_surface: Pwl_surface; x, y, width, height: LongInt);  cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_surface), WL_SURFACE_DAMAGE_BUFFER_, x, y, width, height);
-end;
-
-// inlined method
-function wl_seat_add_listener(wl_seat: Pwl_seat; listener: Pwl_seat_listener; data: Pointer): Integer; cdecl;
-begin
-  Result := wl_proxy_add_listener(Pwl_proxy(wl_seat), Pointer(listener), data);
-end;
-
-// inlined method
-function wl_seat_get_pointer(wl_seat: Pwl_seat): Pwl_pointer; cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_seat),
-    WL_SEAT_GET_POINTER_, @wl_pointer_interface, nil);
-  Result := Pwl_pointer(id);
-end;
-
-// inlined method
-function wl_pointer_add_listener(wl_pointer: Pwl_pointer; 
-  const listener: Pwl_pointer_listener; data: Pointer): Integer; cdecl;
-begin
-  Result := wl_proxy_add_listener(Pwl_proxy(wl_pointer),
-    Pointer(listener), data);
-end;
-
-// inlined method
-procedure wl_pointer_release(wl_pointer: Pwl_pointer); cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_pointer), WL_POINTER_RELEASE_);
-  wl_proxy_destroy(Pwl_proxy(wl_pointer));
-end;
-
-function wl_seat_get_keyboard(wl_seat: Pwl_seat): Pwl_keyboard; cdecl;
-var
-  id: Pwl_proxy;
-begin
-  id := wl_proxy_marshal_constructor(Pwl_proxy(wl_seat),
-    WL_SEAT_GET_KEYBOARD_, @wl_keyboard_interface, nil);
-  Result := Pwl_keyboard(id);
-end;
-
-function wl_keyboard_add_listener(wl_keyboard: Pwl_keyboard;
-  const listener: Pwl_keyboard_listener; data: Pointer): Integer; cdecl;
-begin
-  Result := wl_proxy_add_listener(Pwl_proxy(wl_keyboard),
-    Pointer(listener), data);
-end;
-
-procedure wl_keyboard_release(wl_keyboard: Pwl_keyboard); cdecl;
-begin
-  wl_proxy_marshal(Pwl_proxy(wl_keyboard), WL_KEYBOARD_RELEASE_);
-  wl_proxy_destroy(Pwl_proxy(wl_keyboard));
-end;
-
 // c functions
 function mkstemp(filename: PChar):longint;cdecl;external 'libc' name 'mkstemp';
 function mkostemp(filename: PChar; flags: LongInt):longint;cdecl;external 'libc' name 'mkostemp';
