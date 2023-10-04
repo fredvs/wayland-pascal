@@ -318,7 +318,7 @@ type
     xkb_state_key_get_syms : function(state:Pxkb_state; key:xkb_keycode_t; syms_out:PPxkb_keysym_t):cint;
     xkb_state_key_get_utf8 : function(state:Pxkb_state; key:xkb_keycode_t; buffer:pchar; size:csize_t):cint;
     xkb_state_key_get_utf32 : function(state:Pxkb_state; key:xkb_keycode_t):cuint32;
-    xkb_state_key_get_one_sym : function(state:Pxkb_state; key:xkb_keycode_t):xkb_keysym_t;
+    xkb_state_key_get_one_sym : function(state:Pxkb_state; key:xkb_keycode_t):xkb_keysym_t; cdecl;
     xkb_state_key_get_layout : function(state:Pxkb_state; key:xkb_keycode_t):xkb_layout_index_t;
     xkb_state_key_get_level : function(state:Pxkb_state; key:xkb_keycode_t; layout:xkb_layout_index_t):xkb_level_index_t;
 

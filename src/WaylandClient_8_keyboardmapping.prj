@@ -70,7 +70,7 @@ order17=0
 order18=0
 [projectoptions]
 projectdir=/home/fred/wayland-pascal/src
-projectfilename=/home/fred/wayland-pascal/src/WaylandClient_7_keyboardevents.prj
+projectfilename=/home/fred/wayland-pascal/src/WaylandClient_8_keyboardmapping.prj
 findinfiledialog=95
  [findinfileadialogfo.subdirs]
  value=1
@@ -139,8 +139,9 @@ findinfiledialog=95
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc" "*.mfm" 
  [findinfileadialogfo.findtext]
- value=xdg_surface_add_listener
+ value=xkbstate
  history=20
+  xkbstate
   xdg_surface_add_listener
   xdg_toplevel_add_listener
   Pxdg_toplevel
@@ -160,20 +161,19 @@ findinfiledialog=95
   wl_fixed_t
   wl_pointer_listener
   wl_pointer_listener_enter
-  wl_seat_capabilities
  [findinfileadialogfo]
  stackedunder=
  x=287
- y=380
+ y=417
  cx=234
- cy=373
+ cy=347
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
  [finddialogfo]
  stackedunder=
- x=1073
- y=395
+ x=925
+ y=408
  cx=298
  cy=302
 replacedialog=33
@@ -652,8 +652,8 @@ codetemplateedit=38
  wsize=0
  active=1
  visible=1
-mainfile=WaylandClient_7_keyboardevents.pas
-targetfile=WaylandClient_7_keyboardevents${EXEEXT}
+mainfile=WaylandClient_8_keyboardmapping.pas
+targetfile=WaylandClient_8_keyboardmapping${EXEEXT}
 messageoutputfile=
 makecommand=${COMPILER}
 makedir=
@@ -1501,8 +1501,13 @@ envvarons=0
 [edit]
 hintwidth=382
 hintheight=0
-finddtext=wl_pointer_motion
+finddtext=xkbstate
 findhistory=20
+ wl_keyboard_enter
+ map
+ xkbstate
+ xkb_state_key_get_one_sym
+ xkb_keymap
  wl_pointer_motion
  wl_keyboard_keymap
  xdg_toplevel_add_listener
@@ -1518,19 +1523,14 @@ findhistory=20
   xkb_state_update_mask
   xkb_state_update_mask ()
  close
- inline
- Pwl_keyboard_listener
- uses
- wl_keyboard
- Pwl_keyboard
 findoptions=1
 editpos=1
- 0,477
+ 23,81
 bookmarks0=0
 sourcefiles=1
- ${PROJECTDIR}/WaylandClient_7_keyboardevents.pas
+ ${PROJECTDIR}/WaylandClient_8_keyboardmapping.pas
 relpaths=1
- WaylandClient_7_keyboardevents.pas
+ WaylandClient_8_keyboardmapping.pas
 ismoduletexts=1
  0
 modules=0
@@ -1541,7 +1541,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=526
+windowlayout=543
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1555,8 +1555,8 @@ windowlayout=526
  ny=0
  ncx=0
  ncy=0
- x=0
- y=64
+ x=74
+ y=105
  cx=1334
  cy=673
  rcx=0
@@ -1585,7 +1585,7 @@ windowlayout=526
  ncy=0
  x=586
  y=229
- cx=497
+ cx=625
  cy=314
  rcx=0
  rcy=0
@@ -1710,15 +1710,15 @@ windowlayout=526
  ny=0
  ncx=0
  ncy=0
- x=337
- y=280
+ x=644
+ y=437
  cx=427
  cy=144
  rcx=0
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [watchpointsfo]
  splitdir=0
  useroptions=268451945
@@ -2002,11 +2002,28 @@ windowlayout=526
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/wayland-pascal/src/WaylandClient_7_keyboardevents.pas
- history=3
-  /home/fred/wayland-pascal/src/WaylandClient_7_keyboardevents.pas
-  /home/fred/ideU/src/main.pas
-  ${PROJECTDIR}/main.pas
+ value=/home/fred/wayland-pascal/src/WaylandClient_8_keyboardmapping.pas
+ history=20
+  /home/fred/wayland-pascal/src/WaylandClient_8_keyboardmapping.pas
+  /home/fred/wayland-pascal/src/wayland_client_core.pas
+  /home/fred/wayland-pascal/src/libxkbcommon.pas
+  /home/fred/wayland-pascal/src/c/WaylandClient_7_keyboardevents.c
+  /home/fred/wayland-pascal/src/c/WaylandClient_1_connect.c
+  /home/fred/wayland-pascal/src/c/WaylandClient_6_riggingevents.c
+  /home/fred/wayland-pascal/src/c/WaylandClient_5_settingseat.c
+  /home/fred/wayland-pascal/src/WaylandClient_4_framecallback.pas
+  /home/fred/wayland-pascal/src/WaylandClient_2_globalobjects.pas
+  /home/fred/wayland-pascal/src/WaylandClient_3_xdg.pas
+  /home/fred/wayland-pascal/src/WaylandClient_4_lifecycle.c
+  /home/fred/wayland-c/xdg-shell-client-protocol.h
+  /home/fred/wayland-pascal (copy 1)/src/WaylandClient_3_xdg.c
+  /home/fred/wayland-pascal/src/wayland_client_wrapper.pas
+  /home/fred/mseide-msegui/apps/ide/projectoptionsform.pas
+  /home/fred/mseide-msegui/lib/common/dialogx/msefiledialogx.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdialogs.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regdesignutils.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regexperimental.pas
+  /home/fred/mseide-msegui/lib/common/regcomponents/regunitgroups.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
